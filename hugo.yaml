@@ -49,3 +49,6 @@ markup:
   goldmark:
     renderer:
       unsafe: true
+
+# canonifyURLs: true
+relativeURLs: true

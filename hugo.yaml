@@ -1,3 +1,4 @@
+# hugo.yaml
 baseURL: "https://letinlok.github.io/SuperLE-Blog/"
 languageCode: "zh-cn"
 title: "SuperLE Blog"

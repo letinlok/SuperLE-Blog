@@ -1,0 +1,101 @@
+{{ define "main" }}
+<div class="max-w-6xl mx-auto px-6 py-12">
+  <h1 class="text-5xl font-bold mb-4 text-center tracking-tight">我的书架</h1>
+  <p class="text-center text-gray-400 mb-12">记录阅读历程 · 保持好奇心</p>
+
+  <!-- 全局标签云：左对齐 -->
+  {{ $allTags := slice }}
+  {{ range .Pages }}
+    {{ if .Params.tags }}
+      {{ $allTags = union $allTags .Params.tags }}
+    {{ end }}
+  {{ end }}
+  {{ if $allTags }}
+  <div class="flex flex-wrap gap-2 mb-12">
+    {{ range $allTags }}
+    <a href="/tags/{{ . | urlize }}/" 
+       class="text-xs px-4 py-1.5 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 rounded-full hover:bg-[#ec4899] hover:text-white transition-colors">
+      #{{ . }}
+    </a>
+    {{ end }}
+  </div>
+  {{ end }}
+
+  <!-- 书架列表（每页显示6本） -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    {{ range (.Paginator 6).Pages }}
+    <a href="{{ .RelPermalink }}" class="group">
+      <div class="bg-white dark:bg-[#1a1a1a] border border-gray-200 dark:border-[#333] rounded-3xl p-8 h-full hover:border-[#ec4899] hover:shadow-2xl hover:shadow-[#ec4899]/10 transition-all duration-300 flex flex-col">
+        
+        {{ if .Params.cover }}
+        <div class="relative mb-6 overflow-hidden rounded-2xl aspect-[5/7]">
+          <img src="{{ .Params.cover }}" alt="{{ .Title }}" 
+               class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+        </div>
+        {{ end }}
+
+        <h2 class="text-2xl font-semibold mb-3 text-black dark:text-white group-hover:text-[#ec4899]">{{ .Title }}</h2>
+        <p class="text-gray-600 dark:text-[#cccccc] mb-6">{{ delimit .Params.authors ", " | default "未知作者" }}</p>
+
+        <!-- 预览笔记 -->
+        <div class="flex-grow mb-8">
+          {{ if .Params.notes_public }}
+            <p class="text-gray-700 dark:text-[#cccccc] line-clamp-4 leading-relaxed">
+              {{ .Content | plainify | truncate 180 }}
+            </p>
+          {{ else }}
+            <p class="italic text-gray-500 dark:text-gray-400">笔记已设为私有</p>
+          {{ end }}
+        </div>
+
+        <!-- 底部信息 -->
+        <div class="mt-auto space-y-4">
+          <div>
+            <div class="flex justify-between text-xs text-gray-500 dark:text-gray-400 mb-1">
+              <span>阅读进度</span>
+              <span class="font-mono">{{ .Params.progress }}%</span>
+            </div>
+            <div class="h-2 bg-gray-200 dark:bg-[#333] rounded-full overflow-hidden">
+              <div class="h-full bg-gradient-to-r from-[#ec4899] to-[#ec4899]" 
+                   style="width: {{ .Params.progress }}%"></div>
+            </div>
+          </div>
+
+          <div class="text-sm text-gray-500 dark:text-gray-400">
+            {{ if .Params.start_date }}阅读时间：{{ .Params.start_date | time.Format "2006年01月02日" }}{{ end }}
+            {{ if .Params.finish_date }}<br>完成于：{{ .Params.finish_date | time.Format "2006年01月02日" }}{{ end }}
+          </div>
+        </div>
+
+      </div>
+    </a>
+    {{ end }}
+  </div>
+
+  <!-- 分页导航 -->
+  {{ if .Paginator.HasPrev | or .Paginator.HasNext }}
+  <div class="flex justify-center mt-16">
+    <nav class="flex items-center gap-3">
+      {{ if .Paginator.HasPrev }}
+      <a href="{{ .Paginator.Prev.URL }}" 
+         class="px-5 py-2 border border-gray-300 dark:border-gray-600 rounded-xl hover:border-[#ec4899] transition-colors">
+        ← 上一页
+      </a>
+      {{ end }}
+
+      <span class="px-5 py-2 text-sm text-gray-500 dark:text-gray-400">
+        第 {{ .Paginator.PageNumber }} 页 / 共 {{ .Paginator.TotalPages }} 页
+      </span>
+
+      {{ if .Paginator.HasNext }}
+      <a href="{{ .Paginator.Next.URL }}" 
+         class="px-5 py-2 border border-gray-300 dark:border-gray-600 rounded-xl hover:border-[#ec4899] transition-colors">
+        下一页 →
+      </a>
+      {{ end }}
+    </nav>
+  </div>
+  {{ end }}
+
+</div>
+{{ end }}

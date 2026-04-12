@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head><script src="/SuperLE-Blog/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=SuperLE-Blog/livereload" data-no-instant defer></script>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>我的书架 - SuperLE Blog</title>
+        
+        
+        
+        <link rel="icon" type="image/svg+xml" href="/%e4%ba%8c%e5%93%88-%e7%9b%af.svg">
+        <link rel="apple-touch-icon" href="/%e4%ba%8c%e5%93%88-%e7%9b%af.svg">
+        <link rel="preload" href="https://cdn.tailwindcss.com" as="script">
+        <link rel="preload" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" as="style">            
+        <style>
+            html, body {
+                background-color: #FFFFFF; 
+                color: #1f2937; 
+            }
+            html.dark, html.dark body {
+                background-color: #121212; 
+                color: #f3f4f6; 
+            }
+            .border { 
+                border-color: #d4d4d8; 
+            }
+            html.dark .border {
+                border-color: #374151; 
+            }
+            .carousel-item {
+                display: inline-block;
+                margin: 0 1rem;
+            }            
+            .flex {
+                display: flex;
+            }
+            .flex-col {
+                flex-direction: column;
+            }
+            
+            @media (min-width: 768px) {
+                .md\:flex-row {
+                    flex-direction: row;
+                }
+            }
+            
+            .tech-carousel {
+                overflow: hidden;
+                width: 100%;
+                padding: 1rem 0;
+            }
+            
+            .carousel-track {
+                white-space: nowrap;
+            }
+        </style>
+        
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+        <script>
+            if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        </script>
+        <style>
+            :root {
+                color-scheme: light dark;
+            }
+            
+            .tech-icon {
+                filter: grayscale(100%) brightness(200%);
+                transition: all 0.3s ease;
+            }
+            .tech-icon:hover {
+                filter: none;
+            }
+            
+            @keyframes scroll {
+                0% {
+                    transform: translateX(0);
+                }
+                100% {
+                    transform: translateX(-100%);
+                }
+            }
+            
+            .tech-carousel {
+                width: 100%;
+                padding: 1rem 0;
+            }
+            
+            .tech-track {
+                width: fit-content;
+                animation: scroll 20s linear infinite;
+            }
+            
+            .tech-track:hover {
+                animation-play-state: paused;
+            }
+            
+            .tech-slide {
+                float: left;
+            }
+        </style>
+    </head>
+    <body class="min-h-screen bg-bg-primary-light dark:bg-bg-primary-dark text-text-primary-light dark:text-text-primary-dark">
+        
+<header class="header py-6 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-[#0a0a0a] sticky top-0 z-50 shadow-sm">
+  <div class="max-w-5xl mx-auto px-6 flex items-center justify-between">
+    
+    
+    <a href="http://localhost:1313/SuperLE-Blog/" class="text-2xl font-bold tracking-tight text-black dark:text-white hover:text-[#ec4899]">
+      SuperLE Blog
+    </a>
+
+    
+    <div class="flex items-center gap-10">
+      <nav>
+        <ul class="flex items-center gap-8 text-base">
+          
+          <li>
+            <a href="/SuperLE-Blog/" 
+               class="text-gray-700 dark:text-gray-300 hover:text-[#ec4899] transition-colors">
+              首页
+            </a>
+          </li>
+          
+          <li>
+            <a href="/SuperLE-Blog/posts/" 
+               class="text-gray-700 dark:text-gray-300 hover:text-[#ec4899] transition-colors">
+              文章
+            </a>
+          </li>
+          
+          <li>
+            <a href="/SuperLE-Blog/books/" 
+               class="text-gray-700 dark:text-gray-300 hover:text-[#ec4899] transition-colors">
+              书架
+            </a>
+          </li>
+          
+          <li>
+            <a href="/SuperLE-Blog/about/" 
+               class="text-gray-700 dark:text-gray-300 hover:text-[#ec4899] transition-colors">
+              关于
+            </a>
+          </li>
+          
+        </ul>
+      </nav>
+
+
+      
+      <div class="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400 font-mono">
+        <span>当前时间:</span>
+        <span id="current-time"></span>
+      </div>
+    </div>
+
+  </div>
+</header>
+
+
+<style>
+  .language-switch, .lang-switch, .theme-toggle, .dark-mode-toggle,
+  [aria-label*="language"], [aria-label*="theme"], [aria-label*="mode"],
+  .header-right, .nav-right, .topbar-right, .theme-icon {
+    display: none !important;
+  }
+</style>
+
+
+<script>
+  
+  function updateCurrentTime() {
+    const now = new Date();
+    
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const day = String(now.getDate()).padStart(2, '0');
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    
+    const timeString = `${year}-${month}-${day} ${hours}:${minutes}`;
+    
+    const timeElement = document.getElementById('current-time');
+    if (timeElement) {
+      timeElement.textContent = timeString;
+    }
+  }
+
+  
+  window.addEventListener('load', () => {
+    updateCurrentTime();
+    setInterval(updateCurrentTime, 10000);   
+  });
+
+  
+  function createBackToTop() {
+    const btn = document.createElement('button');
+    btn.innerHTML = '↑';
+    btn.className = 'fixed bottom-8 right-8 w-12 h-12 bg-[#ec4899] hover:bg-[#db2777] text-white rounded-full shadow-lg flex items-center justify-center text-2xl transition-all duration-300 z-50 opacity-0 invisible';
+    document.body.appendChild(btn);
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 400) {
+        btn.style.opacity = '1';
+        btn.style.visibility = 'visible';
+        btn.style.display = 'flex';
+      } else {
+        btn.style.opacity = '0';
+        btn.style.visibility = 'hidden';
+      }
+    });
+
+    btn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  window.addEventListener('load', createBackToTop);
+</script>
+        <main>
+            
+<div class="max-w-6xl mx-auto px-6 py-12">
+  <h1 class="text-5xl font-bold mb-4 text-center tracking-tight">我的书架</h1>
+  <p class="text-center text-gray-400 mb-12">记录阅读历程 · 保持好奇心</p>
+
+  
+  
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+  
+  <div class="flex flex-wrap gap-2 mb-12">
+    
+    <a href="/tags/%E5%B0%8F%E8%AF%B4/" 
+       class="text-xs px-4 py-1.5 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 rounded-full hover:bg-[#ec4899] hover:text-white transition-colors">
+      #小说
+    </a>
+    
+    <a href="/tags/%E6%96%87%E5%AD%A6/" 
+       class="text-xs px-4 py-1.5 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 rounded-full hover:bg-[#ec4899] hover:text-white transition-colors">
+      #文学
+    </a>
+    
+    <a href="/tags/%E4%B8%AD%E5%9B%BD%E6%96%87%E5%AD%A6/" 
+       class="text-xs px-4 py-1.5 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 rounded-full hover:bg-[#ec4899] hover:text-white transition-colors">
+      #中国文学
+    </a>
+    
+  </div>
+  
+
+  
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    
+    <a href="/SuperLE-Blog/books/%E4%B8%80%E5%8F%A5%E9%A1%B6%E4%B8%80%E4%B8%87%E5%8F%A5/" class="group">
+      <div class="bg-white dark:bg-[#1a1a1a] border border-gray-200 dark:border-[#333] rounded-3xl p-8 h-full hover:border-[#ec4899] hover:shadow-2xl hover:shadow-[#ec4899]/10 transition-all duration-300 flex flex-col">
+        
+        
+        <div class="relative mb-6 overflow-hidden rounded-2xl aspect-[5/7]">
+          <img src="/images/books/yijudingyiwanju.jpg" alt="一句顶一万句" 
+               class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+        </div>
+        
+
+        <h2 class="text-2xl font-semibold mb-3 text-black dark:text-white group-hover:text-[#ec4899]">一句顶一万句</h2>
+        <p class="text-gray-600 dark:text-[#cccccc] mb-6">刘震云</p>
+
+        
+        <div class="flex-grow mb-8">
+          
+            <p class="text-gray-700 dark:text-[#cccccc] line-clamp-4 leading-relaxed">
+              我的笔记： 123 123 内容简介 · · · · · · 《一句顶一万句》是著名作家刘震云的扛鼎之作，也是刘震云迄今为止最成熟最大气的作品，并在2011年获第八届茅盾文学奖。
+小说分上下两个部分，前半部“出延津记”写的是过去：卖豆腐老杨的二儿子杨百顺百事不顺，他一生改了三次名：为了寻个营生，被天主教神父老詹纳为教徒，改名杨摩西；给县长种地时因为一个尿壶得 …
+            </p>
+          
+        </div>
+
+        
+        <div class="mt-auto space-y-4">
+          <div>
+            <div class="flex justify-between text-xs text-gray-500 dark:text-gray-400 mb-1">
+              <span>阅读进度</span>
+              <span class="font-mono">0%</span>
+            </div>
+            <div class="h-2 bg-gray-200 dark:bg-[#333] rounded-full overflow-hidden">
+              <div class="h-full bg-gradient-to-r from-[#ec4899] to-[#ec4899]" 
+                   style="width: 0%"></div>
+            </div>
+          </div>
+
+          <div class="text-sm text-gray-500 dark:text-gray-400">
+            
+            
+          </div>
+        </div>
+
+      </div>
+    </a>
+    
+    <a href="/SuperLE-Blog/books/%E5%B0%98%E5%9F%83%E8%90%BD%E5%AE%9A/" class="group">
+      <div class="bg-white dark:bg-[#1a1a1a] border border-gray-200 dark:border-[#333] rounded-3xl p-8 h-full hover:border-[#ec4899] hover:shadow-2xl hover:shadow-[#ec4899]/10 transition-all duration-300 flex flex-col">
+        
+        
+        <div class="relative mb-6 overflow-hidden rounded-2xl aspect-[5/7]">
+          <img src="/images/books/s2.jpg" alt="尘埃落定" 
+               class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+        </div>
+        
+
+        <h2 class="text-2xl font-semibold mb-3 text-black dark:text-white group-hover:text-[#ec4899]">尘埃落定</h2>
+        <p class="text-gray-600 dark:text-[#cccccc] mb-6">阿来</p>
+
+        
+        <div class="flex-grow mb-8">
+          
+            <p class="text-gray-700 dark:text-[#cccccc] line-clamp-4 leading-relaxed">
+              我的笔记： 小说《尘埃落定》是藏族作家阿来所著的一部长篇小说，小说《尘埃落定》描写一个声势显赫的康巴藏族土司，在酒后和汉族太太生了一个傻瓜儿子。 这个人人都认定的傻子与现实生活格格不入，但却有超时代的预感和举止，并成为土司制度兴衰的见证人。小说展现了独特的藏族风情及土司制度的浪漫和神秘。小说《尘埃落定》是第五届茅盾文学奖获奖作品。 
+            </p>
+          
+        </div>
+
+        
+        <div class="mt-auto space-y-4">
+          <div>
+            <div class="flex justify-between text-xs text-gray-500 dark:text-gray-400 mb-1">
+              <span>阅读进度</span>
+              <span class="font-mono">100%</span>
+            </div>
+            <div class="h-2 bg-gray-200 dark:bg-[#333] rounded-full overflow-hidden">
+              <div class="h-full bg-gradient-to-r from-[#ec4899] to-[#ec4899]" 
+                   style="width: 100%"></div>
+            </div>
+          </div>
+
+          <div class="text-sm text-gray-500 dark:text-gray-400">
+            阅读时间：2026年04月11日
+            
+          </div>
+        </div>
+
+      </div>
+    </a>
+    
+    <a href="/SuperLE-Blog/books/%E6%8C%AA%E5%A8%81%E7%9A%84%E6%A3%AE%E6%9E%97/" class="group">
+      <div class="bg-white dark:bg-[#1a1a1a] border border-gray-200 dark:border-[#333] rounded-3xl p-8 h-full hover:border-[#ec4899] hover:shadow-2xl hover:shadow-[#ec4899]/10 transition-all duration-300 flex flex-col">
+        
+        
+        <div class="relative mb-6 overflow-hidden rounded-2xl aspect-[5/7]">
+          <img src="/images/books/nuoweidesenlin.jpg" alt="挪威的森林" 
+               class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+        </div>
+        
+
+        <h2 class="text-2xl font-semibold mb-3 text-black dark:text-white group-hover:text-[#ec4899]">挪威的森林</h2>
+        <p class="text-gray-600 dark:text-[#cccccc] mb-6">村上春树</p>
+
+        
+        <div class="flex-grow mb-8">
+          
+            <p class="text-gray-700 dark:text-[#cccccc] line-clamp-4 leading-relaxed">
+              我的笔记：
+《挪威的森林》是日本作家村上春树所著的一部长篇爱情小说，影响了几代读者的青春名作。 故事讲述主角渡边纠缠在情绪不稳定且患有精神疾病的直子和开朗活泼的小林绿子之间，苦闷彷徨，最终展开了自我救赎和成长的旅程。彻头彻尾的现实笔法，描绘了逝去的青春风景，小说中弥散着特有的感伤和孤独气氛。 自1987年在日本问世后，该小说在年轻人中引起共鸣，风靡不息。上海 …
+            </p>
+          
+        </div>
+
+        
+        <div class="mt-auto space-y-4">
+          <div>
+            <div class="flex justify-between text-xs text-gray-500 dark:text-gray-400 mb-1">
+              <span>阅读进度</span>
+              <span class="font-mono">100%</span>
+            </div>
+            <div class="h-2 bg-gray-200 dark:bg-[#333] rounded-full overflow-hidden">
+              <div class="h-full bg-gradient-to-r from-[#ec4899] to-[#ec4899]" 
+                   style="width: 100%"></div>
+            </div>
+          </div>
+
+          <div class="text-sm text-gray-500 dark:text-gray-400">
+            阅读时间：2016年04月10日
+            
+          </div>
+        </div>
+
+      </div>
+    </a>
+    
+    <a href="/SuperLE-Blog/books/%E6%B4%BB%E7%9D%80/" class="group">
+      <div class="bg-white dark:bg-[#1a1a1a] border border-gray-200 dark:border-[#333] rounded-3xl p-8 h-full hover:border-[#ec4899] hover:shadow-2xl hover:shadow-[#ec4899]/10 transition-all duration-300 flex flex-col">
+        
+        
+        <div class="relative mb-6 overflow-hidden rounded-2xl aspect-[5/7]">
+          <img src="/images/books/huozhe.jpg" alt="活着" 
+               class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+        </div>
+        
+
+        <h2 class="text-2xl font-semibold mb-3 text-black dark:text-white group-hover:text-[#ec4899]">活着</h2>
+        <p class="text-gray-600 dark:text-[#cccccc] mb-6">余华</p>
+
+        
+        <div class="flex-grow mb-8">
+          
+            <p class="text-gray-700 dark:text-[#cccccc] line-clamp-4 leading-relaxed">
+              我的笔记：
+《活着(新版)》讲述了农村人福贵悲惨的人生遭遇。福贵本是个阔少爷，可他嗜赌如命，终于赌光了家业，一贫如洗。
+他的父亲被他活活气死，母亲则在穷困中患了重病，福贵前去求药，却在途中被国民党抓去当壮丁。经过几番波折回到家里，才知道母亲早已去世，妻子家珍含辛茹苦地养大两个儿女。此后更加悲惨的命运一次又一次降临到福贵身上，他的妻子、儿女和孙子相继死去，最后 …
+            </p>
+          
+        </div>
+
+        
+        <div class="mt-auto space-y-4">
+          <div>
+            <div class="flex justify-between text-xs text-gray-500 dark:text-gray-400 mb-1">
+              <span>阅读进度</span>
+              <span class="font-mono">100%</span>
+            </div>
+            <div class="h-2 bg-gray-200 dark:bg-[#333] rounded-full overflow-hidden">
+              <div class="h-full bg-gradient-to-r from-[#ec4899] to-[#ec4899]" 
+                   style="width: 100%"></div>
+            </div>
+          </div>
+
+          <div class="text-sm text-gray-500 dark:text-gray-400">
+            阅读时间：2026年03月15日
+            
+          </div>
+        </div>
+
+      </div>
+    </a>
+    
+    <a href="/SuperLE-Blog/books/%E7%8B%BC%E5%9B%BE%E8%85%BE/" class="group">
+      <div class="bg-white dark:bg-[#1a1a1a] border border-gray-200 dark:border-[#333] rounded-3xl p-8 h-full hover:border-[#ec4899] hover:shadow-2xl hover:shadow-[#ec4899]/10 transition-all duration-300 flex flex-col">
+        
+        
+        <div class="relative mb-6 overflow-hidden rounded-2xl aspect-[5/7]">
+          <img src="/images/books/langtuteng.jpg" alt="狼图腾" 
+               class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+        </div>
+        
+
+        <h2 class="text-2xl font-semibold mb-3 text-black dark:text-white group-hover:text-[#ec4899]">狼图腾</h2>
+        <p class="text-gray-600 dark:text-[#cccccc] mb-6">姜戎</p>
+
+        
+        <div class="flex-grow mb-8">
+          
+            <p class="text-gray-700 dark:text-[#cccccc] line-clamp-4 leading-relaxed">
+              我的笔记：
+狼图腾》由几十个有机连贯的“狼故事”组成，情节紧张激烈而又新奇神秘。读者可从书中每一篇章、每个细节中攫取强烈的阅读快感，令人欲罢不能。 那些精灵一般的蒙古草原狼随时从书中呼啸而出： 狼的每一次侦察、布阵、伏击、奇袭的高超战术;狼对气象、地形的巧妙利用；狼的视死如归和不屈不挠；狼族中的友爱亲情；狼与草原万物的关系；倔强可爱的小狼在失去自由后艰难的成 …
+            </p>
+          
+        </div>
+
+        
+        <div class="mt-auto space-y-4">
+          <div>
+            <div class="flex justify-between text-xs text-gray-500 dark:text-gray-400 mb-1">
+              <span>阅读进度</span>
+              <span class="font-mono">100%</span>
+            </div>
+            <div class="h-2 bg-gray-200 dark:bg-[#333] rounded-full overflow-hidden">
+              <div class="h-full bg-gradient-to-r from-[#ec4899] to-[#ec4899]" 
+                   style="width: 100%"></div>
+            </div>
+          </div>
+
+          <div class="text-sm text-gray-500 dark:text-gray-400">
+            阅读时间：2015年05月11日
+            
+          </div>
+        </div>
+
+      </div>
+    </a>
+    
+    <a href="/SuperLE-Blog/books/%E9%AA%86%E9%A9%BC%E7%A5%A5%E5%AD%90/" class="group">
+      <div class="bg-white dark:bg-[#1a1a1a] border border-gray-200 dark:border-[#333] rounded-3xl p-8 h-full hover:border-[#ec4899] hover:shadow-2xl hover:shadow-[#ec4899]/10 transition-all duration-300 flex flex-col">
+        
+        
+        <div class="relative mb-6 overflow-hidden rounded-2xl aspect-[5/7]">
+          <img src="/images/books/luotuoxiangzi.jpg" alt="骆驼祥子" 
+               class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+        </div>
+        
+
+        <h2 class="text-2xl font-semibold mb-3 text-black dark:text-white group-hover:text-[#ec4899]">骆驼祥子</h2>
+        <p class="text-gray-600 dark:text-[#cccccc] mb-6">老舍</p>
+
+        
+        <div class="flex-grow mb-8">
+          
+            <p class="text-gray-700 dark:text-[#cccccc] line-clamp-4 leading-relaxed">
+              我的笔记：
+越不肯努力便越自怜。以前他什么也不怕，现在他会找安闲自在：刮风下雨，他都不出车；身上有点酸痛，也一歇就是两三天。 自怜便自私，他那点钱不肯借给别人一块，专为留着风天雨天自己垫着用。烟酒可以让人，钱不能借出去，自己比一切人都娇贵可怜。越闲越懒，无事可作又闷得慌，所以时时需要些娱乐，或吃口好东西。 及至想到不该这样浪费光阴与金钱，他的心里永远有句现成 …
+            </p>
+          
+        </div>
+
+        
+        <div class="mt-auto space-y-4">
+          <div>
+            <div class="flex justify-between text-xs text-gray-500 dark:text-gray-400 mb-1">
+              <span>阅读进度</span>
+              <span class="font-mono">100%</span>
+            </div>
+            <div class="h-2 bg-gray-200 dark:bg-[#333] rounded-full overflow-hidden">
+              <div class="h-full bg-gradient-to-r from-[#ec4899] to-[#ec4899]" 
+                   style="width: 100%"></div>
+            </div>
+          </div>
+
+          <div class="text-sm text-gray-500 dark:text-gray-400">
+            阅读时间：2026年04月11日
+            
+          </div>
+        </div>
+
+      </div>
+    </a>
+    
+  </div>
+
+  
+  
+  <div class="flex justify-center mt-16">
+    <nav class="flex items-center gap-3">
+      
+
+      <span class="px-5 py-2 text-sm text-gray-500 dark:text-gray-400">
+        第 1 页 / 共 2 页
+      </span>
+
+      
+      <a href="/SuperLE-Blog/books/page/2/" 
+         class="px-5 py-2 border border-gray-300 dark:border-gray-600 rounded-xl hover:border-[#ec4899] transition-colors">
+        下一页 →
+      </a>
+      
+    </nav>
+  </div>
+  
+
+</div>
+
+        </main>
+        
+<footer class="mt-32 text-center">
+    <div class="max-w-3xl mx-auto">
+        <div class="border-t border-border-primary-light dark:border-border-primary-dark pt-5">
+            <div class="flex flex-col items-center justify-center gap-2">
+                                
+                
+                
+                <p class="text-text-secondary-light dark:text-text-secondary-dark text-xm ">© 2026 </p>
+                <p class="text-text-secondary-light dark:text-text-secondary-dark text-xm pb-12">Built using <a href="https://gohugo.io/" target="_blank" class="animated-link text-accent-light dark:text-accent-dark hover:text-text-primary-light dark:hover:text-text-primary-dark">Hugo</a>. Take a look at my <a href="" target="_blank" class="animated-link text-accent-light dark:text-accent-dark hover:text-text-primary-light dark:hover:text-text-primary-dark">GitHub</a></p>
+                
+            </div>
+        </div>
+    </div>
+</footer>
+
+<style>
+    .animated-link {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+    }
+    
+    .animated-link::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 1px;
+        bottom: -1px;
+        left: 0;
+        background-color: #0284c7;  
+        transition: width 0.3s ease-in-out;
+    }
+    
+    .animated-link:hover::after {
+        width: 100%;
+    }
+    html.dark .animated-link::after {
+        background-color: #0ea5e9;  
+    }
+</style> 
+    </body>
+</html> 

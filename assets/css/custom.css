@@ -1,0 +1,137 @@
+/* 科技感青色高亮 + 简洁深色优化 */
+:root {
+  --accent: #00ff9d;
+}
+
+a {
+  color: var(--accent);
+}
+
+a:hover {
+  color: #00cc7a;
+}
+
+h1, h2, h3 {
+  color: #ffffff;
+  border-bottom: 1px solid #1f1f1f;
+}
+
+.post-content {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+/* 书架卡片样式（后面会用到） */
+.book-card {
+  background: #111;
+  border: 1px solid #333;
+  transition: all 0.3s ease;
+}
+
+.book-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-4px);
+}
+
+/* 彻底隐藏右上角语言切换和模式切换 */
+.language-switch, 
+.lang-select, 
+.theme-switch, 
+.theme-toggle, 
+.dark-toggle, 
+.moon-icon, 
+.sun-icon,
+[aria-label*="language"],
+[aria-label*="theme"],
+[aria-label*="mode"] {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+/* 隐藏包含它们的右侧区域 */
+.header-right, 
+.nav-actions, 
+.top-right, 
+.header-controls {
+  display: none !important;
+}
+
+/* 强制 Markdown 标题样式 - 不再依赖 prose */
+article h1 {
+  font-size: 2.5rem !important;
+  font-weight: 700 !important;
+  margin-top: 1.5rem !important;
+  margin-bottom: 1.5rem !important;
+  color: #111827 !important;
+}
+
+.dark article h1 {
+  color: #ffffff !important;
+}
+
+article h2 {
+  font-size: 1.8rem !important;
+  font-weight: 600 !important;
+  margin-top: 2rem !important;
+  margin-bottom: 1rem !important;
+  color: #1f2937 !important;
+}
+
+.dark article h2 {
+  color: #f3f4f6 !important;
+}
+
+article h3 {
+  font-size: 1.4rem !important;
+  font-weight: 600 !important;
+  margin-top: 1.8rem !important;
+  margin-bottom: 0.8rem !important;
+  color: #374151 !important;
+}
+
+.dark article h3 {
+  color: #e5e7eb !important;
+}
+
+article p {
+  font-size: 1.1rem !important;
+  line-height: 1.75 !important;
+  margin-bottom: 1.25rem !important;
+}
+
+/* 强制 Markdown 标题样式 */
+.markdown-content h1 {
+  font-size: 2.5rem !important;
+  font-weight: 700 !important;
+  margin: 2rem 0 1.5rem 0 !important;
+  line-height: 1.2 !important;
+}
+
+.markdown-content h2 {
+  font-size: 1.75rem !important;
+  font-weight: 600 !important;
+  margin: 2rem 0 1rem 0 !important;
+  line-height: 1.3 !important;
+}
+
+.markdown-content h3 {
+  font-size: 1.4rem !important;
+  font-weight: 600 !important;
+  margin: 1.8rem 0 0.8rem 0 !important;
+}
+
+.markdown-content p {
+  font-size: 1.1rem !important;
+  line-height: 1.75 !important;
+  margin-bottom: 1.4rem !important;
+}
+
+/* 图片样式优化 */
+.markdown-content img {
+  max-width: 100% !important;
+  height: auto !important;
+  border-radius: 12px !important;
+  margin: 2rem 0 !important;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1) !important;
+}
+

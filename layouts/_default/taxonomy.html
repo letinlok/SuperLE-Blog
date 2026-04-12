@@ -1,0 +1,100 @@
+{{ define "main" }}
+<div class="max-w-6xl mx-auto px-6 py-12">
+
+  {{/* 1. 逻辑分流：计算书籍和文章的数量 */}}
+  {{ $books := where .Pages "Section" "books" }}
+  {{ $posts := where .Pages "Section" "posts" }}
+
+  <div class="mb-8">
+    {{ if gt (len $books) (len $posts) }}
+      <a href="{{ "/books/" | relURL }}" class="inline-flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-[#ec4899] transition-colors">
+        ← 返回我的书架
+      </a>
+    {{ else }}
+      <a href="{{ "/posts/" | relURL }}" class="inline-flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-[#ec4899] transition-colors">
+        ← 返回文章列表
+      </a>
+    {{ end }}
+  </div>
+
+  <h1 class="text-4xl font-bold mb-6 text-black dark:text-white text-center">
+    标签：#{{ .Title }}
+  </h1>
+
+  {{/* 2. 初始化分页：每页显示 6 个项目 */}}
+  {{ $paginator := .Paginate .Pages 6 }}
+
+  <p class="text-center text-gray-500 dark:text-gray-400 mb-12">
+    在该分类下共找到 {{ len .Pages }} 个相关内容
+  </p>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    {{ range $paginator.Pages }}
+      
+      {{ if eq .Section "books" }}
+        <a href="{{ .RelPermalink }}" class="group">
+          <div class="bg-white dark:bg-[#1a1a1a] border border-gray-200 dark:border-[#333] rounded-3xl p-8 h-full hover:border-[#ec4899] hover:shadow-2xl transition-all duration-300 flex flex-col">
+            {{ if .Params.cover }}
+            <div class="relative mb-6 overflow-hidden rounded-2xl aspect-[5/7]">
+              <img src="{{ .Params.cover | relURL }}" alt="{{ .Title }}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+            </div>
+            {{ end }}
+            <h2 class="text-2xl font-semibold mb-3 text-black dark:text-white group-hover:text-[#ec4899]">{{ .Title }}</h2>
+            <p class="text-gray-600 dark:text-[#cccccc] mb-6">{{ delimit .Params.authors ", " | default "未知作者" }}</p>
+            <div class="mt-auto">
+              <div class="flex justify-between text-xs text-gray-500 mb-1">
+                <span>进度</span>
+                <span>{{ .Params.progress | default 0 }}%</span>
+              </div>
+              <div class="h-2 bg-gray-200 dark:bg-[#333] rounded-full overflow-hidden">
+                <div class="h-full bg-gradient-to-r from-[#ec4899] to-[#ec4899]" style="width: {{ .Params.progress | default 0 }}%"></div>
+              </div>
+            </div>
+          </div>
+        </a>
+
+      {{ else }}
+        <a href="{{ .RelPermalink }}" class="group">
+          <div class="bg-white dark:bg-[#1a1a1a] border border-gray-200 dark:border-[#333] rounded-3xl p-8 h-full hover:border-[#ec4899] hover:shadow-2xl transition-all duration-300 flex flex-col">
+            <h2 class="text-2xl font-semibold mb-4 text-black dark:text-white group-hover:text-[#ec4899] line-clamp-2">
+              {{ .Title }}
+            </h2>
+            <p class="text-gray-700 dark:text-[#cccccc] line-clamp-4 leading-relaxed flex-grow mb-8">
+              {{ if .Params.summary }}{{ .Params.summary }}{{ else }}{{ .Summary }}{{ end }}
+            </p>
+            <div class="text-sm text-gray-500 dark:text-gray-400 mt-auto">
+              {{ .Date.Format "2006年01月02日" }}
+            </div>
+          </div>
+        </a>
+      {{ end }}
+
+    {{ end }}
+  </div>
+
+  {{ if or $paginator.HasPrev $paginator.HasNext }}
+  <div class="flex justify-center mt-16">
+    <nav class="flex items-center gap-3">
+      {{ if $paginator.HasPrev }}
+      <a href="{{ $paginator.Prev.URL }}" 
+         class="px-5 py-2 border border-gray-300 dark:border-gray-600 rounded-xl hover:border-[#ec4899] transition-colors">
+        ← 上一页
+      </a>
+      {{ end }}
+
+      <span class="px-5 py-2 text-sm text-gray-500 dark:text-gray-400">
+        第 {{ $paginator.PageNumber }} 页 / 共 {{ $paginator.TotalPages }} 页
+      </span>
+
+      {{ if $paginator.HasNext }}
+      <a href="{{ $paginator.Next.URL }}" 
+         class="px-5 py-2 border border-gray-300 dark:border-gray-600 rounded-xl hover:border-[#ec4899] transition-colors">
+        下一页 →
+      </a>
+      {{ end }}
+    </nav>
+  </div>
+  {{ end }}
+
+</div>
+{{ end }}

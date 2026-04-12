@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>SuperLE Blog</title>
+    <link>http://localhost:1313/SuperLE-Blog/</link>
+    <description>Recent content on SuperLE Blog</description>
+    <generator>Hugo</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sat, 11 Apr 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/SuperLE-Blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>关于SQL</title>
+      <link>http://localhost:1313/SuperLE-Blog/posts/1/</link>
+      <pubDate>Sat, 11 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/SuperLE-Blog/posts/1/</guid>
+      <description>Hello SQL！</description>
+    </item>
+    <item>
+      <title>关于SQL</title>
+      <link>http://localhost:1313/SuperLE-Blog/posts/12/</link>
+      <pubDate>Sat, 11 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/SuperLE-Blog/posts/12/</guid>
+      <description>Hello SQL！</description>
+    </item>
+    <item>
+      <title>关于SQL</title>
+      <link>http://localhost:1313/SuperLE-Blog/posts/test/</link>
+      <pubDate>Sat, 11 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/SuperLE-Blog/posts/test/</guid>
+      <description>Hello SQL！</description>
+    </item>
+    <item>
+      <title>关于SQL</title>
+      <link>http://localhost:1313/SuperLE-Blog/posts/%E5%85%B3%E4%BA%8Esql/</link>
+      <pubDate>Sat, 11 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/SuperLE-Blog/posts/%E5%85%B3%E4%BA%8Esql/</guid>
+      <description>Hello SQL！</description>
+    </item>
+    <item>
+      <title>关于SQL</title>
+      <link>http://localhost:1313/SuperLE-Blog/posts/%E6%88%91/</link>
+      <pubDate>Sat, 11 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/SuperLE-Blog/posts/%E6%88%91/</guid>
+      <description>Hello SQL！</description>
+    </item>
+    <item>
+      <title>python入门基础</title>
+      <link>http://localhost:1313/SuperLE-Blog/posts/%E5%85%B3%E4%BA%8Epython/</link>
+      <pubDate>Fri, 10 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/SuperLE-Blog/posts/%E5%85%B3%E4%BA%8Epython/</guid>
+      <description>Python是一种计算机程序设计语言。你可能已经听说过很多种流行的编程语言，比如非常难学的C语言，非常流行的Java语言，适合初学者的Basic语言，适合网页编程的JavaScript语言等等。</description>
+    </item>
+    <item>
+      <title>一句顶一万句</title>
+      <link>http://localhost:1313/SuperLE-Blog/books/%E4%B8%80%E5%8F%A5%E9%A1%B6%E4%B8%80%E4%B8%87%E5%8F%A5/</link>
+      <pubDate>Fri, 10 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/SuperLE-Blog/books/%E4%B8%80%E5%8F%A5%E9%A1%B6%E4%B8%80%E4%B8%87%E5%8F%A5/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;我的笔记：&lt;/strong&gt;&#xA;&lt;img src=&#34;http://localhost:1313/SuperLE-Blog/images/posts/chenailuoding.jpg&#34; alt=&#34;图片描述&#34;&gt;&lt;/p&gt;&#xA;&lt;h1 id=&#34;123&#34;&gt;123&lt;/h1&gt;&#xA;&lt;h2 id=&#34;123-1&#34;&gt;123&lt;/h2&gt;&#xA;&lt;p&gt;内容简介  · · · · · ·&#xA;《一句顶一万句》是著名作家刘震云的扛鼎之作，也是刘震云迄今为止最成熟最大气的作品，并在2011年获第八届茅盾文学奖。&lt;/p&gt;&#xA;&lt;p&gt;小说分上下两个部分，前半部“出延津记”写的是过去：卖豆腐老杨的二儿子杨百顺百事不顺，他一生改了三次名：为了寻个营生，被天主教神父老詹纳为教徒，改名杨摩西；给县长种地时因为一个尿壶得罪了县长，提心吊胆中有人说媒，便倒插门嫁给馒头铺的吴香香，改名吴摩西；吴香香给吴摩西扣了顶绿帽子，吴摩西带着吴香香和前夫的女儿巧玲假意去寻与人私奔的妻子，路上又把巧玲丢了，失望之中，要离开故乡，从此用喊丧的罗长礼的名字度过余生；后半部“回延津记”写的是现在：巧玲被卖到陕西，成了曹青娥，嫁给牛家，儿子牛爱国也是假意寻找与人私奔的妻子，又想到自己从前的相好，想起母亲的老家，于是走回延津……一出一走，延宕百年。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>尘埃落定</title>
+      <link>http://localhost:1313/SuperLE-Blog/books/%E5%B0%98%E5%9F%83%E8%90%BD%E5%AE%9A/</link>
+      <pubDate>Fri, 10 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/SuperLE-Blog/books/%E5%B0%98%E5%9F%83%E8%90%BD%E5%AE%9A/</guid>
+      <description>&lt;h2 id=&#34;我的笔记&#34;&gt;&lt;strong&gt;我的笔记：&lt;/strong&gt;&lt;/h2&gt;&#xA;&lt;h3 id=&#34;小说尘埃落定是藏族作家阿来所著的一部长篇小说小说尘埃落定描写一个声势显赫的康巴藏族土司在酒后和汉族太太生了一个傻瓜儿子&#34;&gt;小说《尘埃落定》是藏族作家阿来所著的一部长篇小说，小说《尘埃落定》描写一个声势显赫的康巴藏族土司，在酒后和汉族太太生了一个傻瓜儿子。&lt;/h3&gt;&#xA;&lt;h1 id=&#34;这个人人都认定的傻子与现实生活格格不入但却有超时代的预感和举止并成为土司制度兴衰的见证人小说展现了独特的藏族风情及土司制度的浪漫和神秘小说尘埃落定是第五届茅盾文学奖获奖作品&#34;&gt;这个人人都认定的傻子与现实生活格格不入，但却有超时代的预感和举止，并成为土司制度兴衰的见证人。小说展现了独特的藏族风情及土司制度的浪漫和神秘。小说《尘埃落定》是第五届茅盾文学奖获奖作品。&lt;/h1&gt;</description>
+    </item>
+    <item>
+      <title>我的第一篇科技日志</title>
+      <link>http://localhost:1313/SuperLE-Blog/posts/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E7%A7%91%E6%8A%80%E6%97%A5%E5%BF%97/</link>
+      <pubDate>Fri, 10 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/SuperLE-Blog/posts/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E7%A7%91%E6%8A%80%E6%97%A5%E5%BF%97/</guid>
+      <description>&lt;h1 id=&#34;hello-hugo&#34;&gt;Hello Hugo！&lt;/h1&gt;&#xA;&lt;p&gt;这是我用 Hugo 搭建的第一个科技风博客。&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;界面简洁干净&lt;/li&gt;&#xA;&lt;li&gt;支持 Markdown 写文章&lt;/li&gt;&#xA;&lt;li&gt;后面会加上书架、搜索和评论&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;继续加油！🚀&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>挪威的森林</title>
+      <link>http://localhost:1313/SuperLE-Blog/books/%E6%8C%AA%E5%A8%81%E7%9A%84%E6%A3%AE%E6%9E%97/</link>
+      <pubDate>Fri, 10 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/SuperLE-Blog/books/%E6%8C%AA%E5%A8%81%E7%9A%84%E6%A3%AE%E6%9E%97/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;我的笔记：&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;《挪威的森林》是日本作家村上春树所著的一部长篇爱情小说，影响了几代读者的青春名作。&#xA;故事讲述主角渡边纠缠在情绪不稳定且患有精神疾病的直子和开朗活泼的小林绿子之间，苦闷彷徨，最终展开了自我救赎和成长的旅程。彻头彻尾的现实笔法，描绘了逝去的青春风景，小说中弥散着特有的感伤和孤独气氛。&#xA;自1987年在日本问世后，该小说在年轻人中引起共鸣，风靡不息。上海译文出版社于2018年2月，推出该书的全新纪念版。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>活着</title>
+      <link>http://localhost:1313/SuperLE-Blog/books/%E6%B4%BB%E7%9D%80/</link>
+      <pubDate>Fri, 10 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/SuperLE-Blog/books/%E6%B4%BB%E7%9D%80/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;我的笔记：&lt;/strong&gt;&lt;br&gt;&#xA;《活着(新版)》讲述了农村人福贵悲惨的人生遭遇。福贵本是个阔少爷，可他嗜赌如命，终于赌光了家业，一贫如洗。&lt;/p&gt;&#xA;&lt;h2 id=&#34;他的父亲被他活活气死母亲则在穷困中患了重病福贵前去求药却在途中被国民党抓去当壮丁经过几番波折回到家里才知道母亲早已去世妻子家珍含辛茹苦地养大两个儿女此后更加悲惨的命运一次又一次降临到福贵身上他的妻子儿女和孙子相继死去最后只剩福贵和一头老牛相依为命但老人依旧活着仿佛比往日更加洒脱与坚强&#34;&gt;他的父亲被他活活气死，母亲则在穷困中患了重病，福贵前去求药，却在途中被国民党抓去当壮丁。经过几番波折回到家里，才知道母亲早已去世，妻子家珍含辛茹苦地养大两个儿女。此后更加悲惨的命运一次又一次降临到福贵身上，他的妻子、儿女和孙子相继死去，最后只剩福贵和一头老牛相依为命，但老人依旧活着，仿佛比往日更加洒脱与坚强。&lt;/h2&gt;&#xA;&lt;h2 id=&#34;活着新版荣获意大利格林扎纳卡佛文学奖最高奖项1998年台湾中国时报10本好书奖1994年香港博益15本好书奖1994年第三届世界华文冰心文学奖2002年入选香港亚洲周刊评选的20世纪中文小说百年百强中国百位批评家和文学编辑评选的20世纪90年代最有影响的10部作品&#34;&gt;《活着(新版)》荣获意大利格林扎纳•卡佛文学奖最高奖项（1998年）、台湾《中国时报》10本好书奖（1994年）、香港“博益”15本好书奖（1994年）、第三届世界华文“冰心文学奖”（2002年），入选香港《亚洲周刊》评选的“20世纪中文小说百年百强”、中国百位批评家和文学编辑评选的“20世纪90年代最有影响的10部作品”。&lt;/h2&gt;</description>
+    </item>
+    <item>
+      <title>狼图腾</title>
+      <link>http://localhost:1313/SuperLE-Blog/books/%E7%8B%BC%E5%9B%BE%E8%85%BE/</link>
+      <pubDate>Fri, 10 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/SuperLE-Blog/books/%E7%8B%BC%E5%9B%BE%E8%85%BE/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;我的笔记：&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;狼图腾》由几十个有机连贯的“狼故事”组成，情节紧张激烈而又新奇神秘。读者可从书中每一篇章、每个细节中攫取强烈的阅读快感，令人欲罢不能。&#xA;那些精灵一般的蒙古草原狼随时从书中呼啸而出：&#xA;狼的每一次侦察、布阵、伏击、奇袭的高超战术;狼对气象、地形的巧妙利用；狼的视死如归和不屈不挠；狼族中的友爱亲情；狼与草原万物的关系；倔强可爱的小狼在失去自由后艰难的成长过程——无不使我们联想到人类.&#xA;进而思考人类历史中那些迄今县置未解的一个个疑问：当年区区十几万蒙古骑兵为什么能够横扫欧亚大陆？中华民族今日辽阔疆土由来的深层原因？历史上究竟是华夏文明征服了游牧民族，还是游牧民族一次次为汉民族输血才使中华文明得以延续？&#xA;为什么中国马背上的民族，从古至今不崇拜马图腾而信奉狼图腾？中华文明从未中断的原因，是否在于中国还存在着一个从未中断的狼图腾文化？于是，我们不能不追思遥想，不能不面对&amp;hellip;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>骆驼祥子</title>
+      <link>http://localhost:1313/SuperLE-Blog/books/%E9%AA%86%E9%A9%BC%E7%A5%A5%E5%AD%90/</link>
+      <pubDate>Fri, 10 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/SuperLE-Blog/books/%E9%AA%86%E9%A9%BC%E7%A5%A5%E5%AD%90/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;我的笔记：&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;越不肯努力便越自怜。以前他什么也不怕，现在他会找安闲自在：刮风下雨，他都不出车；身上有点酸痛，也一歇就是两三天。&#xA;自怜便自私，他那点钱不肯借给别人一块，专为留着风天雨天自己垫着用。烟酒可以让人，钱不能借出去，自己比一切人都娇贵可怜。越闲越懒，无事可作又闷得慌，所以时时需要些娱乐，或吃口好东西。&#xA;及至想到不该这样浪费光阴与金钱，他的心里永远有句现成的话，由多少经验给他铸成的一句话：“当初咱倒要强过呢，有一钉点好处没有？”这句话没人能够驳倒，没人能把它解释开；那么，谁能拦着祥子不往低处去呢？！&#xA;懒，能使人脾气大。祥子现在知道怎样对人瞪眼。对车座儿，对巡警，对任何人，他决定不再老老实实的敷衍。当他勤苦卖力的时候，他没得到过公道。现在，他知道自己的汗是怎样的宝贵，能少出一滴便少出一滴；有人要占他的便宜，休想。&#xA;随便的把车放下，他懒得再动，不管那是该放车的地方不是。巡警过来干涉，他动嘴不动身子，能延宕一会儿便多停一会儿。赶到看见非把车挪开不可了，他的嘴更不能闲着，他会骂。&#xA;巡警要是不肯挨骂，那么，打一场也没什么，好在祥子知道自己的力气大，先把巡警揍了，再去坐狱也不吃亏。在打架的时候，他又觉出自己的力气与本事，把力气都砸在别人的肉上，他见了光明，太阳好像特别的亮起来。&#xA;攒着自己的力气好预备打架，他以前连想也没想到过，现在居然成为事实了，而且是件可以使他心中痛快一会儿的事；想起来，多么好笑呢！ 不要说是个赤手空拳的巡警，就是那满街横行的汽车，他也不怕。汽车迎头来了，卷起地上所有的灰土，祥子不躲，不论汽车的喇叭怎样的响，不管坐车的怎样着急。&#xA;汽车也没了法，只好放慢了速度。它慢了，祥子也躲开了，少吃许多尘土。汽车要是由后边来，他也用这一招。他算清楚了，反正汽车不敢伤人，那么为什么老早的躲开，好教它把尘土都带起来呢？巡警是专为给汽车开道的，唯恐它跑得不快与带起来的尘土不多，祥子不是巡警，就不许汽车横行。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>关于我</title>
+      <link>http://localhost:1313/SuperLE-Blog/about/</link>
+      <pubDate>Wed, 01 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/SuperLE-Blog/about/</guid>
+      <description>&lt;h1 id=&#34;tinlok&#34;&gt;TinLok&lt;/h1&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;正在学习 Hugo 搭建自己的博客&lt;/li&gt;&#xA;&lt;li&gt;喜欢科技、阅读和记录思考&lt;/li&gt;&#xA;&lt;li&gt;这个网站完全用静态方式搭建，简洁、有科技感&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/SuperLE-Blog/images/about/%E4%BA%8C%E5%93%88-%E7%9B%AF.svg&#34; alt=&#34;图片描述&#34;&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;欢迎来到我的数字空间&#34;&gt;🍻欢迎来到我的数字空间！&lt;/h2&gt;</description>
+    </item>
+    <item>
+      <title>瓦尔登湖</title>
+      <link>http://localhost:1313/SuperLE-Blog/books/%E7%93%A6%E5%B0%94%E7%99%BB%E6%B9%96/</link>
+      <pubDate>Wed, 01 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/SuperLE-Blog/books/%E7%93%A6%E5%B0%94%E7%99%BB%E6%B9%96/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;我的笔记：&lt;/strong&gt;&lt;br&gt;&#xA;这本书的思想是崇尚简朴生活，热爱大自然的风光，内容丰厚，意义深远，语言生动，意境深邃，就像是个智慧的老人，闪现哲理灵光，又有高山流水那样的境界。&lt;/p&gt;&#xA;&lt;p&gt;书中记录了作者隐居瓦尔登湖畔，与大自然水乳交融、在田园生活中感知自然重塑自我的奇异历程。读本书，能引领人进入一个澄明、恬美、素雅的世界。&lt;/p&gt;&#xA;&lt;p&gt;（如果 notes_public: false，这里内容只在本地或你自己看时显示）&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

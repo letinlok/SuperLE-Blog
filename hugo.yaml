@@ -1,0 +1,50 @@
+baseURL: "https://letinlok.github.io/SuperLE-Blog/"
+languageCode: "zh-cn"
+title: "SuperLE Blog"
+theme: "hugo-noir"
+
+params:
+  darkMode: true
+  accentColor: "#00ff9d"
+  showReadingTime: true
+  showToc: true
+  showShareButtons: true
+  showCodeCopyButtons: true
+
+  homeInfoParams:
+    Title: "Welcome"
+    Content: "记录思考、代码与阅读的极简科技日志<br>Keep it simple, stay curious."
+
+  giscus:
+    repo: "letinlok/SuperLE-Blog"
+    repoID: "R_kgDOR_CFjQ"
+    category: "Announcements"
+    categoryID: "DIC_kwDOR_CFjc4C6h9r"
+    mapping: "pathname"
+    reactionsEnabled: true
+    theme: "preferred_color_scheme"
+
+  # 新增：引入自定义 CSS（重要！）
+  customCSS:
+    - "css/custom.css"
+
+menu:
+  main:
+    - name: 首页
+      url: /
+      weight: 1
+    - name: 文章
+      url: /posts/
+      weight: 2
+    - name: 书架
+      url: /books/
+      weight: 3
+    - name: 关于
+      url: /about/
+      weight: 4
+
+# Markdown 配置
+markup:
+  goldmark:
+    renderer:
+      unsafe: true

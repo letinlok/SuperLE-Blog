@@ -1,0 +1,77 @@
+{{ define "main" }}
+<div class="max-w-5xl mx-auto px-6 py-12">
+
+  <!-- 文章标题（左对齐） -->
+  <h1 class="text-4xl font-bold mb-6 text-black dark:text-white">{{ .Title }}</h1>
+
+  <!-- 全局标签云：放在标题下方 -->
+  {{ $allTags := slice }}
+  {{ range .Pages }}
+    {{ if .Params.tags }}
+      {{ $allTags = union $allTags .Params.tags }}
+    {{ end }}
+  {{ end }}
+  {{ if $allTags }}
+  <div class="flex flex-wrap gap-2 mb-12">
+    {{ range $allTags }}
+    <a href="/tags/{{ . | urlize }}/" 
+       class="text-xs px-4 py-1.5 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 rounded-full hover:bg-[#ec4899] hover:text-white transition-colors">
+      #{{ . }}
+    </a>
+    {{ end }}
+  </div>
+  {{ end }}
+
+  <!-- 文章列表 -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+    {{ range (.Paginator 6).Pages }}
+    <a href="{{ .RelPermalink }}" class="group">
+      <div class="bg-white dark:bg-[#1a1a1a] border border-gray-200 dark:border-[#333] rounded-3xl p-8 h-full hover:border-[#ec4899] hover:shadow-2xl hover:shadow-[#ec4899]/10 transition-all duration-300 flex flex-col">
+        
+        <h2 class="text-2xl font-semibold mb-4 text-black dark:text-white group-hover:text-[#ec4899] line-clamp-2">
+          {{ .Title }}
+        </h2>
+
+        <p class="text-gray-700 dark:text-[#cccccc] line-clamp-4 leading-relaxed flex-grow mb-8">
+          {{ if .Params.summary }}
+            {{ .Params.summary }}
+          {{ else }}
+            {{ .Summary }}
+          {{ end }}
+        </p>
+
+        <div class="text-sm text-gray-500 dark:text-gray-400 mt-auto">
+          {{ .Date.Format "2006年01月02日" }}
+        </div>
+      </div>
+    </a>
+    {{ end }}
+  </div>
+
+  <!-- 分页导航 -->
+  {{ if .Paginator.HasPrev | or .Paginator.HasNext }}
+  <div class="flex justify-center mt-16">
+    <nav class="flex items-center gap-3">
+      {{ if .Paginator.HasPrev }}
+      <a href="{{ .Paginator.Prev.URL }}" 
+         class="px-5 py-2 border border-gray-300 dark:border-gray-600 rounded-xl hover:border-[#ec4899] transition-colors">
+        ← 上一页
+      </a>
+      {{ end }}
+
+      <span class="px-5 py-2 text-sm text-gray-500 dark:text-gray-400">
+        第 {{ .Paginator.PageNumber }} 页 / 共 {{ .Paginator.TotalPages }} 页
+      </span>
+
+      {{ if .Paginator.HasNext }}
+      <a href="{{ .Paginator.Next.URL }}" 
+         class="px-5 py-2 border border-gray-300 dark:border-gray-600 rounded-xl hover:border-[#ec4899] transition-colors">
+        下一页 →
+      </a>
+      {{ end }}
+    </nav>
+  </div>
+  {{ end }}
+
+</div>
+{{ end }}

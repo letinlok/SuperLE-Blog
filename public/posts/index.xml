@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>所有文章 on SuperLE Blog</title>
+    <link>http://localhost:1313/SuperLE-Blog/posts/</link>
+    <description>Recent content in 所有文章 on SuperLE Blog</description>
+    <generator>Hugo</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sat, 11 Apr 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/SuperLE-Blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>关于SQL</title>
+      <link>http://localhost:1313/SuperLE-Blog/posts/1/</link>
+      <pubDate>Sat, 11 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/SuperLE-Blog/posts/1/</guid>
+      <description>Hello SQL！</description>
+    </item>
+    <item>
+      <title>关于SQL</title>
+      <link>http://localhost:1313/SuperLE-Blog/posts/12/</link>
+      <pubDate>Sat, 11 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/SuperLE-Blog/posts/12/</guid>
+      <description>Hello SQL！</description>
+    </item>
+    <item>
+      <title>关于SQL</title>
+      <link>http://localhost:1313/SuperLE-Blog/posts/test/</link>
+      <pubDate>Sat, 11 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/SuperLE-Blog/posts/test/</guid>
+      <description>Hello SQL！</description>
+    </item>
+    <item>
+      <title>关于SQL</title>
+      <link>http://localhost:1313/SuperLE-Blog/posts/%E5%85%B3%E4%BA%8Esql/</link>
+      <pubDate>Sat, 11 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/SuperLE-Blog/posts/%E5%85%B3%E4%BA%8Esql/</guid>
+      <description>Hello SQL！</description>
+    </item>
+    <item>
+      <title>关于SQL</title>
+      <link>http://localhost:1313/SuperLE-Blog/posts/%E6%88%91/</link>
+      <pubDate>Sat, 11 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/SuperLE-Blog/posts/%E6%88%91/</guid>
+      <description>Hello SQL！</description>
+    </item>
+    <item>
+      <title>python入门基础</title>
+      <link>http://localhost:1313/SuperLE-Blog/posts/%E5%85%B3%E4%BA%8Epython/</link>
+      <pubDate>Fri, 10 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/SuperLE-Blog/posts/%E5%85%B3%E4%BA%8Epython/</guid>
+      <description>Python是一种计算机程序设计语言。你可能已经听说过很多种流行的编程语言，比如非常难学的C语言，非常流行的Java语言，适合初学者的Basic语言，适合网页编程的JavaScript语言等等。</description>
+    </item>
+    <item>
+      <title>我的第一篇科技日志</title>
+      <link>http://localhost:1313/SuperLE-Blog/posts/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E7%A7%91%E6%8A%80%E6%97%A5%E5%BF%97/</link>
+      <pubDate>Fri, 10 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/SuperLE-Blog/posts/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E7%A7%91%E6%8A%80%E6%97%A5%E5%BF%97/</guid>
+      <description>&lt;h1 id=&#34;hello-hugo&#34;&gt;Hello Hugo！&lt;/h1&gt;&#xA;&lt;p&gt;这是我用 Hugo 搭建的第一个科技风博客。&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;界面简洁干净&lt;/li&gt;&#xA;&lt;li&gt;支持 Markdown 写文章&lt;/li&gt;&#xA;&lt;li&gt;后面会加上书架、搜索和评论&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;继续加油！🚀&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

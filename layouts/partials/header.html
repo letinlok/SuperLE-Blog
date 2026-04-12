@@ -1,0 +1,106 @@
+<!-- SuperLE Blog 固定顶部导航栏 -->
+<header class="header py-6 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-[#0a0a0a] sticky top-0 z-50 shadow-sm">
+  <div class="max-w-5xl mx-auto px-6 flex items-center justify-between">
+    
+    <!-- 左侧 Logo / 标题 -->
+    <a href="{{ .Site.BaseURL }}" class="text-2xl font-bold tracking-tight text-black dark:text-white hover:text-[#ec4899]">
+      SuperLE Blog
+    </a>
+
+    <!-- 右侧水平菜单 + 当前时间 -->
+    <div class="flex items-center gap-10">
+      <nav>
+        <ul class="flex items-center gap-8 text-base">
+          {{ range .Site.Menus.main }}
+          <li>
+            <a href="{{ .URL }}" 
+               class="text-gray-700 dark:text-gray-300 hover:text-[#ec4899] transition-colors">
+              {{ .Name }}
+            </a>
+          </li>
+          {{ end }}
+        </ul>
+      </nav>
+<!-- 
+    <button id="theme-toggle"
+      class="text-gray-500 dark:text-gray-400 hover:text-[#ec4899] transition-colors p-2 flex items-center">
+      <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+        <path
+          d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z">
+        </path>
+      </svg>
+      <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+        <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+      </svg>
+    </button> -->
+
+      <!-- 当前时间（年-月-日 小时:分钟） -->
+      <div class="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400 font-mono">
+        <span>当前时间:</span>
+        <span id="current-time"></span>
+      </div>
+    </div>
+
+  </div>
+</header>
+
+<!-- 隐藏语言和模式切换 -->
+<style>
+  .language-switch, .lang-switch, .theme-toggle, .dark-mode-toggle,
+  [aria-label*="language"], [aria-label*="theme"], [aria-label*="mode"],
+  .header-right, .nav-right, .topbar-right, .theme-icon {
+    display: none !important;
+  }
+</style>
+
+<!-- JavaScript：实时时间 + 返回顶部按钮 -->
+<script>
+  // ==================== 当前时间实时更新（优化版） ====================  
+  function updateCurrentTime() {
+    const now = new Date();
+    
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const day = String(now.getDate()).padStart(2, '0');
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    
+    const timeString = `${year}-${month}-${day} ${hours}:${minutes}`;
+    
+    const timeElement = document.getElementById('current-time');
+    if (timeElement) {
+      timeElement.textContent = timeString;
+    }
+  }
+
+  // 页面加载后立即执行 + 每10秒更新一次（更灵敏）
+  window.addEventListener('load', () => {
+    updateCurrentTime();
+    setInterval(updateCurrentTime, 10000);   // 每10秒更新
+  });
+
+  // ==================== 返回顶部按钮（保持不变） ====================
+  function createBackToTop() {
+    const btn = document.createElement('button');
+    btn.innerHTML = '↑';
+    btn.className = 'fixed bottom-8 right-8 w-12 h-12 bg-[#ec4899] hover:bg-[#db2777] text-white rounded-full shadow-lg flex items-center justify-center text-2xl transition-all duration-300 z-50 opacity-0 invisible';
+    document.body.appendChild(btn);
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 400) {
+        btn.style.opacity = '1';
+        btn.style.visibility = 'visible';
+        btn.style.display = 'flex';
+      } else {
+        btn.style.opacity = '0';
+        btn.style.visibility = 'hidden';
+      }
+    });
+
+    btn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  window.addEventListener('load', createBackToTop);
+</script>

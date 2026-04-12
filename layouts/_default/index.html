@@ -1,0 +1,89 @@
+{{ define "main" }}
+<!-- 页面内容从这里开始，header 已在 partials 中全局引入 -->
+<div class="max-w-5xl mx-auto px-6 py-16">
+
+  <!-- Welcome 大标题 -->
+  <div class="text-center mb-20">
+    <h1 class="text-6xl font-bold tracking-tighter mb-6 text-black dark:text-white">Welcome</h1>
+    <p class="text-2xl text-gray-600 dark:text-gray-400 max-w-md mx-auto">
+      记录思考、代码与阅读的极简科技日志
+    </p>
+  </div>
+
+  <!-- 最新文章预览 -->
+  <div class="mb-20">
+    <div class="flex items-center justify-between mb-8">
+      <h2 class="text-3xl font-semibold text-black dark:text-white">最新文章</h2> 
+      <a href="/posts/" class="text-[#1a1a1a] hover:text-[#ec4899] hover:underline flex items-center gap-2" style="text-decoration: none">
+        查看全部 <span class="text-xl">→</span>
+      </a>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {{ range first 3 (where .Site.RegularPages "Type" "posts") }}
+      <a href="{{ .RelPermalink }}" class="group">
+        <div class="bg-white dark:bg-[#1a1a1a] border border-gray-200 dark:border-[#333] rounded-3xl p-8 h-full hover:border-[#ec4899] hover:shadow-2xl hover:shadow-[#ec4899]/10 transition-all duration-300 flex flex-col">
+          <h3 class="font-semibold text-2xl mb-4 text-black dark:text-white line-clamp-2 group-hover:text-[#ec4899]">{{ .Title }}</h3>
+          
+          <p class="text-gray-700 dark:text-[#cccccc] leading-relaxed flex-grow">
+            {{ if .Params.summary }}
+              {{ .Params.summary | truncate 120 }}
+            {{ else }}
+              {{ .Summary | truncate 120 }}
+            {{ end }}
+          </p>
+          
+          <div class="mt-auto pt-8 text-xs text-gray-500 dark:text-gray-400">
+            {{ .Date.Format "2006年01月02日" }}
+          </div>
+        </div>
+      </a>
+      {{ end }}
+    </div>
+  </div>
+
+  <!-- 书架快捷预览 -->
+  <div>
+    <div class="flex items-center justify-between mb-8">
+      <h2 class="text-3xl font-semibold text-black dark:text-white">书架预览</h2>
+      <a href="/books/" class="text-[#1a1a1a] hover:text-[#ec4899] hover:underline flex items-center gap-2" style="text-decoration: none">
+        进入书架 <span class="text-xl">→</span>
+      </a>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {{ range first 3 (where .Site.RegularPages "Type" "books") }}
+      <a href="{{ .RelPermalink }}" class="group">
+        <div class="bg-white dark:bg-[#1a1a1a] border border-gray-200 dark:border-[#333] rounded-3xl p-8 h-full hover:border-[#ec4899] hover:shadow-2xl hover:shadow-[#ec4899]/10 transition-all duration-300 flex flex-col">
+          
+          {{ if .Params.cover }}
+          <div class="relative mb-6 overflow-hidden rounded-2xl aspect-[5/7]">
+            <img src="{{ .Params.cover }}" alt="{{ .Title }}" 
+                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+          </div>
+          {{ end }}
+
+          <h3 class="font-semibold text-xl mb-2 text-black dark:text-white group-hover:text-[#ec4899] transition-colors">
+            {{ .Title }}
+          </h3>
+          
+          <p class="text-gray-700 dark:text-[#cccccc] mb-6">{{ delimit .Params.authors ", " | default "未知作者" }}</p>
+
+          <div class="mt-auto">
+            <div class="flex justify-between text-xs text-gray-500 dark:text-gray-400 mb-2">
+              <span>阅读进度</span>
+              <span class="font-mono">{{ .Params.progress }}%</span>
+            </div>
+            <div class="h-2 bg-gray-200 dark:bg-[#333] rounded-full overflow-hidden">
+              <div class="h-full bg-gradient-to-r from-[#ec4899] to-[#ec4899] transition-all" 
+                   style="width: {{ .Params.progress }}%"></div>
+            </div>
+          </div>
+        </div>
+      </a>
+      {{ end }}
+    </div>
+  </div>
+
+</div>
+{{ end }}

@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head><script src="/SuperLE-Blog/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=SuperLE-Blog/livereload" data-no-instant defer></script>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> - SuperLE Blog</title>
+        
+        
+        
+        <link rel="icon" type="image/svg+xml" href="/%e4%ba%8c%e5%93%88-%e7%9b%af.svg">
+        <link rel="apple-touch-icon" href="/%e4%ba%8c%e5%93%88-%e7%9b%af.svg">
+        <link rel="preload" href="https://cdn.tailwindcss.com" as="script">
+        <link rel="preload" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" as="style">            
+        <style>
+            html, body {
+                background-color: #FFFFFF; 
+                color: #1f2937; 
+            }
+            html.dark, html.dark body {
+                background-color: #121212; 
+                color: #f3f4f6; 
+            }
+            .border { 
+                border-color: #d4d4d8; 
+            }
+            html.dark .border {
+                border-color: #374151; 
+            }
+            .carousel-item {
+                display: inline-block;
+                margin: 0 1rem;
+            }            
+            .flex {
+                display: flex;
+            }
+            .flex-col {
+                flex-direction: column;
+            }
+            
+            @media (min-width: 768px) {
+                .md\:flex-row {
+                    flex-direction: row;
+                }
+            }
+            
+            .tech-carousel {
+                overflow: hidden;
+                width: 100%;
+                padding: 1rem 0;
+            }
+            
+            .carousel-track {
+                white-space: nowrap;
+            }
+        </style>
+        
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+        <script>
+            if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        </script>
+        <style>
+            :root {
+                color-scheme: light dark;
+            }
+            
+            .tech-icon {
+                filter: grayscale(100%) brightness(200%);
+                transition: all 0.3s ease;
+            }
+            .tech-icon:hover {
+                filter: none;
+            }
+            
+            @keyframes scroll {
+                0% {
+                    transform: translateX(0);
+                }
+                100% {
+                    transform: translateX(-100%);
+                }
+            }
+            
+            .tech-carousel {
+                width: 100%;
+                padding: 1rem 0;
+            }
+            
+            .tech-track {
+                width: fit-content;
+                animation: scroll 20s linear infinite;
+            }
+            
+            .tech-track:hover {
+                animation-play-state: paused;
+            }
+            
+            .tech-slide {
+                float: left;
+            }
+        </style>
+    </head>
+    <body class="min-h-screen bg-bg-primary-light dark:bg-bg-primary-dark text-text-primary-light dark:text-text-primary-dark">
+        
+<header class="header py-6 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-[#0a0a0a] sticky top-0 z-50 shadow-sm">
+  <div class="max-w-5xl mx-auto px-6 flex items-center justify-between">
+    
+    
+    <a href="http://localhost:1313/SuperLE-Blog/" class="text-2xl font-bold tracking-tight text-black dark:text-white hover:text-[#ec4899]">
+      SuperLE Blog
+    </a>
+
+    
+    <div class="flex items-center gap-10">
+      <nav>
+        <ul class="flex items-center gap-8 text-base">
+          
+          <li>
+            <a href="/SuperLE-Blog/" 
+               class="text-gray-700 dark:text-gray-300 hover:text-[#ec4899] transition-colors">
+              首页
+            </a>
+          </li>
+          
+          <li>
+            <a href="/SuperLE-Blog/posts/" 
+               class="text-gray-700 dark:text-gray-300 hover:text-[#ec4899] transition-colors">
+              文章
+            </a>
+          </li>
+          
+          <li>
+            <a href="/SuperLE-Blog/books/" 
+               class="text-gray-700 dark:text-gray-300 hover:text-[#ec4899] transition-colors">
+              书架
+            </a>
+          </li>
+          
+          <li>
+            <a href="/SuperLE-Blog/about/" 
+               class="text-gray-700 dark:text-gray-300 hover:text-[#ec4899] transition-colors">
+              关于
+            </a>
+          </li>
+          
+        </ul>
+      </nav>
+
+
+      
+      <div class="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400 font-mono">
+        <span>当前时间:</span>
+        <span id="current-time"></span>
+      </div>
+    </div>
+
+  </div>
+</header>
+
+
+<style>
+  .language-switch, .lang-switch, .theme-toggle, .dark-mode-toggle,
+  [aria-label*="language"], [aria-label*="theme"], [aria-label*="mode"],
+  .header-right, .nav-right, .topbar-right, .theme-icon {
+    display: none !important;
+  }
+</style>
+
+
+<script>
+  
+  function updateCurrentTime() {
+    const now = new Date();
+    
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const day = String(now.getDate()).padStart(2, '0');
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    
+    const timeString = `${year}-${month}-${day} ${hours}:${minutes}`;
+    
+    const timeElement = document.getElementById('current-time');
+    if (timeElement) {
+      timeElement.textContent = timeString;
+    }
+  }
+
+  
+  window.addEventListener('load', () => {
+    updateCurrentTime();
+    setInterval(updateCurrentTime, 10000);   
+  });
+
+  
+  function createBackToTop() {
+    const btn = document.createElement('button');
+    btn.innerHTML = '↑';
+    btn.className = 'fixed bottom-8 right-8 w-12 h-12 bg-[#ec4899] hover:bg-[#db2777] text-white rounded-full shadow-lg flex items-center justify-center text-2xl transition-all duration-300 z-50 opacity-0 invisible';
+    document.body.appendChild(btn);
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 400) {
+        btn.style.opacity = '1';
+        btn.style.visibility = 'visible';
+        btn.style.display = 'flex';
+      } else {
+        btn.style.opacity = '0';
+        btn.style.visibility = 'hidden';
+      }
+    });
+
+    btn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  window.addEventListener('load', createBackToTop);
+</script>
+        <main>
+            
+<div class="max-w-5xl mx-auto px-6 py-12">
+
+  
+  <h1 class="text-4xl font-bold mb-6 text-black dark:text-white"></h1>
+
+  
+  
+  
+  
+
+  
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+    
+  </div>
+
+  
+  
+
+</div>
+
+        </main>
+        
+<footer class="mt-32 text-center">
+    <div class="max-w-3xl mx-auto">
+        <div class="border-t border-border-primary-light dark:border-border-primary-dark pt-5">
+            <div class="flex flex-col items-center justify-center gap-2">
+                                
+                
+                
+                <p class="text-text-secondary-light dark:text-text-secondary-dark text-xm ">© 2026 </p>
+                <p class="text-text-secondary-light dark:text-text-secondary-dark text-xm pb-12">Built using <a href="https://gohugo.io/" target="_blank" class="animated-link text-accent-light dark:text-accent-dark hover:text-text-primary-light dark:hover:text-text-primary-dark">Hugo</a>. Take a look at my <a href="" target="_blank" class="animated-link text-accent-light dark:text-accent-dark hover:text-text-primary-light dark:hover:text-text-primary-dark">GitHub</a></p>
+                
+            </div>
+        </div>
+    </div>
+</footer>
+
+<style>
+    .animated-link {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+    }
+    
+    .animated-link::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 1px;
+        bottom: -1px;
+        left: 0;
+        background-color: #0284c7;  
+        transition: width 0.3s ease-in-out;
+    }
+    
+    .animated-link:hover::after {
+        width: 100%;
+    }
+    html.dark .animated-link::after {
+        background-color: #0ea5e9;  
+    }
+</style> 
+    </body>
+</html> 

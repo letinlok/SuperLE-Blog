@@ -1,0 +1,135 @@
+{{ define "main" }}
+<div class="max-w-3xl mx-auto px-6 py-12 bg-white dark:bg-[#0a0a0a]">
+  <article>
+
+    <!-- 返回书架按钮 -->
+    <div class="mb-8">
+      <a href="/books/"
+        class="inline-flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-[#ec4899] transition-colors">
+        ← 返回我的书架
+      </a>
+    </div>
+
+    {{ if .Params.cover }}
+    <div class="mb-5">
+      <img src="{{ .Params.cover }}" alt="{{ .Title }}" class="rounded-3xl">
+    </div>
+    {{ end }}
+
+    <h1 class="text-4xl font-bold mb-4 text-black dark:text-white">{{ .Title }}</h1>
+    <p class="text-gray-600 dark:text-[#cccccc] mb-8">作者：{{ delimit .Params.authors ", " | default "未知" }}</p>
+
+    <div class="grid grid-cols-2 gap-8 mb-10 text-sm">
+      <div>
+        <span class="text-gray-500 dark:text-gray-400">阅读进度</span><br>
+        <span class="text-3xl font-mono text-[#ec4899]">{{ .Params.progress }}%</span>
+      </div>
+      <div>
+        <span class="text-gray-500 dark:text-gray-400">阅读时间</span><br>
+        <span class="text-2xl dark:text-white text-[#ec4899]">{{ .Params.start_date | default "未记录" }}</span>
+        {{ if .Params.finish_date }}<br><span class="text-[#ec4899]">完成于 {{ .Params.finish_date }}</span>{{ end }}
+      </div>
+    </div>
+
+    <!-- 笔记内容（强制 Markdown 样式） -->
+    {{ if .Params.notes_public }}
+    <div class="markdown-content">
+      <style>
+        .markdown-content h1 {
+          font-size: 2.25rem !important;
+          font-weight: 700 !important;
+          margin: 2rem 0 1.2rem 0 !important;
+          color: #111827 !important;
+        }
+
+        .dark .markdown-content h1 {
+          color: #ffffff !important;
+        }
+
+        .markdown-content h2 {
+          font-size: 1.75rem !important;
+          font-weight: 600 !important;
+          margin: 2rem 0 1rem 0 !important;
+          color: #1f2937 !important;
+        }
+
+        .dark .markdown-content h2 {
+          color: #f3f4f6 !important;
+        }
+
+        .markdown-content h3 {
+          font-size: 1.35rem !important;
+          font-weight: 600 !important;
+          margin: 1.8rem 0 0.8rem 0 !important;
+          color: #374151 !important;
+        }
+
+        .dark .markdown-content h3 {
+          color: #e5e7eb !important;
+        }
+
+        .markdown-content p {
+          font-size: 1.08rem !important;
+          line-height: 1.75 !important;
+          margin-bottom: 1.25rem !important;
+        }
+
+        .markdown-content img {
+          max-width: 100% !important;
+          height: auto !important;
+          border-radius: 12px !important;
+          margin: 1.5rem 0 !important;
+          box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1) !important;
+        }
+      </style>
+      {{ .Content }}
+    </div>
+    {{ else }}
+    <p class="italic text-gray-500 dark:text-gray-400">此笔记已设为私有，仅自己可见。</p>
+    {{ end }}
+
+  </article>
+
+  <!-- 上一本 / 下一本 -->
+  <div class="mt-20 pt-12 border-t border-gray-200 dark:border-gray-700 grid grid-cols-2 gap-8 text-sm">
+
+    <!-- 上一本 -->
+    <div>
+      {{ if .PrevInSection }}
+      <a href="{{ .PrevInSection.RelPermalink }}" class="group block">
+        <div class="text-gray-500 dark:text-gray-400 mb-1">上一本</div>
+        <div class="font-medium text-black dark:text-white group-hover:text-[#ec4899] transition-colors line-clamp-2">
+          {{ .PrevInSection.Title }}
+        </div>
+      </a>
+      {{ else }}
+      <div class="block">
+        <div class="text-gray-500 dark:text-gray-400 mb-1">上一本</div>
+        <div class="font-medium text-gray-400 dark:text-gray-500">当前已经是第一本</div>
+      </div>
+      {{ end }}
+    </div>
+
+    <!-- 下一本 -->
+    <div class="text-right">
+      {{ if .NextInSection }}
+      <a href="{{ .NextInSection.RelPermalink }}" class="group block">
+        <div class="text-gray-500 dark:text-gray-400 mb-1">下一本</div>
+        <div class="font-medium text-black dark:text-white group-hover:text-[#ec4899] transition-colors line-clamp-2">
+          {{ .NextInSection.Title }}
+        </div>
+      </a>
+      {{ else }}
+      <div class="block">
+        <div class="text-gray-500 dark:text-gray-400 mb-1">下一本</div>
+        <div class="font-medium text-gray-400 dark:text-gray-500">当前已经是最后一本</div>
+      </div>
+      {{ end }}
+    </div>
+
+  </div>
+  <div class="giscus-section">
+    {{ partial "giscus.html" . }}
+  </div>
+</div>
+{{ end }}

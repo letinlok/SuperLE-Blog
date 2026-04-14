@@ -25,14 +25,23 @@
         <div class="bg-white dark:bg-[#1a1a1a] border border-gray-200 dark:border-[#333] rounded-3xl p-8 h-full hover:border-[#ec4899] hover:shadow-2xl hover:shadow-[#ec4899]/10 transition-all duration-300 flex flex-col">
           <h3 class="font-semibold text-2xl mb-4 text-black dark:text-white line-clamp-2 group-hover:text-[#ec4899]">{{ .Title }}</h3>
           
-          <p class="text-gray-700 dark:text-[#cccccc] leading-relaxed flex-grow">
+          <!-- <p class="text-gray-700 dark:text-[#cccccc] leading-relaxed flex-grow">
             {{ if .Params.summary }}
               {{ .Params.summary | truncate 120 }}
             {{ else }}
               {{ .Summary | truncate 120 }}
             {{ end }}
-          </p>
+          </p> -->
           
+          <p
+            class="text-gray-700 dark:text-[#cccccc] line-clamp-3 leading-relaxed flex-grow h-[4.5rem] overflow-hidden text-ellipsis">
+            {{ if .Params.summary }}
+            {{ .Params.summary | truncate 65 }}
+            {{ else }}
+            {{ .Summary | truncate 65 }}
+            {{ end }}
+          </p>
+
           <div class="mt-auto pt-8 text-xs text-gray-500 dark:text-gray-400">
             {{ .Date.Format "2006年01月02日" }}
           </div>

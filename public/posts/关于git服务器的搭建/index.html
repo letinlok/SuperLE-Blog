@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head><script src="/SuperLE-Blog/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=SuperLE-Blog/livereload" data-no-instant defer></script>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>✍关于Git服务器的搭建 - SuperLE Blog</title>
+        
+        
+        
+        <link rel="icon" type="image/svg+xml" href="http://localhost:1313/SuperLE-Blog/logo.svg">
+        <link rel="apple-touch-icon" href="http://localhost:1313/SuperLE-Blog/logo.svg">
+        <link rel="preload" href="https://cdn.tailwindcss.com" as="script">
+        <link rel="preload" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" as="style">            
+        <style>
+            html, body {
+                background-color: #FFFFFF; 
+                color: #1f2937; 
+            }
+            html.dark, html.dark body {
+                background-color: #121212; 
+                color: #f3f4f6; 
+            }
+            .border { 
+                border-color: #d4d4d8; 
+            }
+            html.dark .border {
+                border-color: #374151; 
+            }
+            .carousel-item {
+                display: inline-block;
+                margin: 0 1rem;
+            }            
+            .flex {
+                display: flex;
+            }
+            .flex-col {
+                flex-direction: column;
+            }
+            
+            @media (min-width: 768px) {
+                .md\:flex-row {
+                    flex-direction: row;
+                }
+            }
+            
+            .tech-carousel {
+                overflow: hidden;
+                width: 100%;
+                padding: 1rem 0;
+            }
+            
+            .carousel-track {
+                white-space: nowrap;
+            }
+        </style>
+        
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+        <script>
+            if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        </script>
+        <style>
+            :root {
+                color-scheme: light dark;
+            }
+            
+            .tech-icon {
+                filter: grayscale(100%) brightness(200%);
+                transition: all 0.3s ease;
+            }
+            .tech-icon:hover {
+                filter: none;
+            }
+            
+            @keyframes scroll {
+                0% {
+                    transform: translateX(0);
+                }
+                100% {
+                    transform: translateX(-100%);
+                }
+            }
+            
+            .tech-carousel {
+                width: 100%;
+                padding: 1rem 0;
+            }
+            
+            .tech-track {
+                width: fit-content;
+                animation: scroll 20s linear infinite;
+            }
+            
+            .tech-track:hover {
+                animation-play-state: paused;
+            }
+            
+            .tech-slide {
+                float: left;
+            }
+        </style>
+    </head>
+    <body class="min-h-screen bg-bg-primary-light dark:bg-bg-primary-dark text-text-primary-light dark:text-text-primary-dark">
+        <link rel="icon" type="image/svg+xml" href="http://localhost:1313/SuperLE-Blog/logo.svg">
+<link rel="apple-touch-icon" href="http://localhost:1313/SuperLE-Blog/logo.svg">
+
+
+<header class="header py-6 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-[#0a0a0a] sticky top-0 z-50 shadow-sm">
+  <div class="max-w-5xl mx-auto px-6 flex items-center justify-between">
+    
+    
+    <a href="http://localhost:1313/SuperLE-Blog/" class="text-2xl font-bold tracking-tight text-black dark:text-white hover:text-[#ec4899]">
+      SuperLE Blog
+    </a>
+
+    
+    <div class="flex items-center gap-10">
+      <nav>
+        <ul class="flex items-center gap-8 text-base">
+          
+          <li>
+            <a href="http://localhost:1313/SuperLE-Blog/" 
+               class="text-gray-700 dark:text-gray-300 hover:text-[#ec4899] transition-colors">
+              首页
+            </a>
+          </li>
+          
+          <li>
+            <a href="http://localhost:1313/SuperLE-Blog/posts/" 
+               class="text-gray-700 dark:text-gray-300 hover:text-[#ec4899] transition-colors">
+              文章
+            </a>
+          </li>
+          
+          <li>
+            <a href="http://localhost:1313/SuperLE-Blog/books/" 
+               class="text-gray-700 dark:text-gray-300 hover:text-[#ec4899] transition-colors">
+              书架
+            </a>
+          </li>
+          
+          <li>
+            <a href="http://localhost:1313/SuperLE-Blog/about/" 
+               class="text-gray-700 dark:text-gray-300 hover:text-[#ec4899] transition-colors">
+              关于
+            </a>
+          </li>
+          
+        </ul>
+      </nav>
+
+
+      
+      <div class="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400 font-mono">
+        <span>当前时间:</span>
+        <span id="current-time"></span>
+      </div>
+    </div>
+
+  </div>
+</header>
+
+
+
+
+
+<script>
+  
+  function updateCurrentTime() {
+    const now = new Date();
+    
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const day = String(now.getDate()).padStart(2, '0');
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    
+    const timeString = `${year}-${month}-${day} ${hours}:${minutes}`;
+    
+    const timeElement = document.getElementById('current-time');
+    if (timeElement) {
+      timeElement.textContent = timeString;
+    }
+  }
+
+  
+  window.addEventListener('load', () => {
+    updateCurrentTime();
+    setInterval(updateCurrentTime, 10000);   
+  });
+
+  
+  function createBackToTop() {
+    const btn = document.createElement('button');
+    btn.innerHTML = '↑';
+    btn.className = 'fixed bottom-8 right-8 w-12 h-12 bg-[#ec4899] hover:bg-[#db2777] text-white rounded-full shadow-lg flex items-center justify-center text-2xl transition-all duration-300 z-50 opacity-0 invisible';
+    document.body.appendChild(btn);
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 400) {
+        btn.style.opacity = '1';
+        btn.style.visibility = 'visible';
+        btn.style.display = 'flex';
+      } else {
+        btn.style.opacity = '0';
+        btn.style.visibility = 'hidden';
+      }
+    });
+
+    btn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  window.addEventListener('load', createBackToTop);
+</script>
+
+        <main>
+            
+<div class="max-w-3xl mx-auto px-6 py-16 bg-white dark:bg-[#0a0a0a]">
+
+  
+  <div class="mb-8">
+    <a href="http://localhost:1313/SuperLE-Blog/posts/" 
+       class="inline-flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-[#ec4899] transition-colors">
+      ← 返回文章列表
+    </a>
+  </div>
+
+  <article>
+
+    
+    <h1 class="text-5xl font-bold mb-10 text-black dark:text-white leading-tight">
+      ✍关于Git服务器的搭建
+    </h1>
+
+    
+    <div class="text-sm text-gray-500 dark:text-gray-400 mb-12">
+      2026年04月13日
+    </div>
+
+    
+    <div class="prose prose-lg dark:prose-invert max-w-none markdown-content">
+      <style>
+         
+        .markdown-content h1 {
+          font-size: 2.5rem !important;
+          margin: 2.5rem 0 1.5rem 0 !important;
+        }
+        .dark .markdown-content h1 { color: #ffffff !important; }
+
+        .markdown-content h2 {
+          font-size: 1.85rem !important;
+          margin: 2.2rem 0 1.2rem 0 !important;
+          border-bottom: 2px solid #e5e7eb !important;
+          padding-bottom: 0.5rem !important;
+        }
+        .dark .markdown-content h2 { 
+          color: #f3f4f6 !important; 
+          border-bottom-color: #4b5563 !important;
+        }
+
+        .markdown-content h3 {
+          font-size: 1.5rem !important;
+          margin: 1.8rem 0 1rem 0 !important;
+        }
+        .dark .markdown-content h3 { color: #e5e7eb !important; }
+
+        .markdown-content h4 {
+          font-size: 1.25rem !important;
+          font-weight: 600 !important;
+          margin: 1.6rem 0 0.8rem 0 !important;
+        }
+        .dark .markdown-content h4 { color: #d1d5db !important; }
+
+         
+        .markdown-content pre {
+          background-color: #1f2937 !important;
+          color: #e5e7eb !important;
+          padding: 1.25rem !important;
+          border-radius: 12px !important;
+          overflow-x: auto !important;
+          margin: 1.5rem 0 !important;
+        }
+
+         
+        .markdown-content table {
+          width: 100% !important;
+          border-collapse: collapse !important;
+          margin: 2rem 0 !important;
+        }
+        .markdown-content th, 
+        .markdown-content td {
+          border: 1px solid #d1d5db !important;
+          padding: 12px 16px !important;
+          text-align: left !important;
+        }
+        .dark .markdown-content th, 
+        .dark .markdown-content td {
+          border-color: #4b5563 !important;
+        }
+        .markdown-content th {
+          background-color: #f3f4f6 !important;
+        }
+        .dark .markdown-content th {
+          background-color: #374151 !important;
+        }
+
+         
+        .markdown-content img {
+          max-width: 100% !important;
+          border-radius: 12px !important;
+          margin: 2rem 0 !important;
+        }
+      </style>
+
+      <h3 id="轻量级-ssh-git-服务器vmware虚拟机ubuntu2004">🚀轻量级 SSH Git 服务器（VMware虚拟机+Ubuntu20.04）</h3>
+<h4 id="1-虚拟机环境准备">1. 虚拟机环境准备</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-Bash" data-lang="Bash"><span style="display:flex;"><span><span style="color:#75715e"># 更新系统并安装基础软件</span>
+</span></span><span style="display:flex;"><span>sudo apt update
+</span></span><span style="display:flex;"><span>sudo apt install -y git openssh-server
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 确认 Git 版本</span>
+</span></span><span style="display:flex;"><span>git --version
+</span></span></code></pre></div><h4 id="2-创建专用-git-用户">2. 创建专用 Git 用户</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-Bash" data-lang="Bash"><span style="display:flex;"><span><span style="color:#75715e"># 创建不可登录 shell 的 git 用户（更安全）  这条命令用于创建一个专用的 Git 系统用户</span>
+</span></span><span style="display:flex;"><span>sudo adduser --system --shell /bin/bash --gecos <span style="color:#e6db74">&#39;Git Version Control&#39;</span> --group --disabled-password --home /home/git git
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># OR</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 创建不可登录的 git 系统用户（仅用于Git/SSH操作，更安全） ---豆包</span>
+</span></span><span style="display:flex;"><span>sudo adduser --system --shell /usr/sbin/nologin --gecos <span style="color:#e6db74">&#39;Git Version Control&#39;</span> --group --home /home/git git
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 💡这条命令的深层用意</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 安全隔离：专为 Git 服务创建单独用户，避免使用 root或你的个人用户操作仓库。</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 无密码登录：结合 SSH 公钥认证，实现既安全又便捷的免密访问。</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 权限统一：所有仓库文件的所有者都是 git:git，避免权限混乱。</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 无密码：系统用户默认无密码，结合SSH公钥认证实现免密访问。</span>
+</span></span></code></pre></div><h3 id="-创建后验证">🔍 创建后验证</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-Bash" data-lang="Bash"><span style="display:flex;"><span><span style="color:#75715e"># 查看用户信息</span>
+</span></span><span style="display:flex;"><span>grep git /etc/passwd
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 输出类似：git:x:998:998:Git Version Control:/home/git:/bin/bash</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 注意 UID 是 998（&lt;1000 的系统用户）</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 查看用户组</span>
+</span></span><span style="display:flex;"><span>grep git /etc/group
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 输出类似：git:x:998:</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 尝试切换用户（会失败，因为禁用密码）</span>
+</span></span><span style="display:flex;"><span>su - git
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 提示：This account is currently not available.</span>
+</span></span></code></pre></div><h4 id="3-配置-ssh-密钥登录免密">3. 配置 SSH 密钥登录（免密）</h4>
+<p><strong>在宿主机（你的物理机）生成密钥对</strong>（如果已有 <code>id_rsa.pub</code>可跳过）：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-Bash" data-lang="Bash"><span style="display:flex;"><span>ssh-keygen -t rsa -b <span style="color:#ae81ff">4096</span> -C <span style="color:#e6db74">&#34;your_email@example.com&#34;</span>
+</span></span></code></pre></div><h5 id="31windows-生成-ssh-密钥">3.1Windows 生成 SSH 密钥</h5>
+<ol>
+<li>
+<p><strong>打开 PowerShell</strong></p>
+<p>按 <code>Win + X</code>，选择 <strong>Windows PowerShell</strong> 或 <strong>终端</strong>。</p>
+</li>
+<li>
+<p><strong>生成密钥对</strong></p>
+<p>执行以下命令（将 <code>your_email@example.com</code>替换为你的邮箱或标识）：</p>
+</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-Bash" data-lang="Bash"><span style="display:flex;"><span>ssh-keygen -t rsa -b <span style="color:#ae81ff">4096</span> -C <span style="color:#e6db74">&#34;your_email@example.com&#34;</span>
+</span></span></code></pre></div><p><strong>参数解释</strong>：</p>
+<ul>
+<li>
+<p><code>-t rsa</code>：指定密钥类型为 RSA。</p>
+</li>
+<li>
+<p><code>-b 4096</code>：指定密钥长度为 4096 位（更安全）。</p>
+</li>
+<li>
+<p><code>-C</code>：添加注释，通常用于标识密钥所有者。</p>
+<ol start="3">
+<li><strong>处理交互提示（关键步骤）</strong></li>
+</ol>
+</li>
+</ul>
+<p>执行命令后，会依次出现三个提示，<strong>请按以下方案操作</strong>：</p>
+<table>
+  <thead>
+      <tr>
+          <th>提示信息</th>
+          <th>推荐操作</th>
+          <th>说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>Enter file in which to save the key</code> <strong>(输入保存密钥的文件)</strong></td>
+          <td><strong>按回车键</strong></td>
+          <td>使用默认路径：<code>C:\Users\你的用户名.ssh\id_rsa</code> 可以指定存放路径</td>
+      </tr>
+      <tr>
+          <td><code>Enter passphrase</code> <strong>(输入密码短语)</strong></td>
+          <td><strong>按回车键</strong></td>
+          <td><strong>留空</strong>（不设置密码）。这样后续使用最方便，适合虚拟机内网环境。</td>
+      </tr>
+      <tr>
+          <td><code>Enter same passphrase again</code> <strong>(再次输入密码短语)</strong></td>
+          <td><strong>按回车键</strong></td>
+          <td>确认留空。</td>
+      </tr>
+  </tbody>
+</table>
+<h4 id="4-处理交互提示关键步骤">4. <strong>处理交互提示（关键步骤）</strong></h4>
+<p>看到类似下方的输出，即表示生成成功：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-Bash" data-lang="Bash"><span style="display:flex;"><span>Your identification has been saved in C:<span style="color:#ae81ff">\U</span>sers<span style="color:#ae81ff">\你</span>的用户名<span style="color:#ae81ff">\.</span>ssh<span style="color:#ae81ff">\i</span>d_rsa.
+</span></span><span style="display:flex;"><span>Your public key has been saved in C:<span style="color:#ae81ff">\U</span>sers<span style="color:#ae81ff">\你</span>的用户名<span style="color:#ae81ff">\.</span>ssh<span style="color:#ae81ff">\i</span>d_rsa.pub.
+</span></span><span style="display:flex;"><span>The key fingerprint is:
+</span></span><span style="display:flex;"><span>SHA256:xxxxxxxxxxxxxxxx your_email@example.com
+</span></span></code></pre></div><p>此时在 <code>C:\Users\你的用户名.ssh</code>目录下会生成两个文件：</p>
+<ul>
+<li><code>id_rsa</code>：<strong>私钥</strong>（Private Key），<strong>绝不可泄露</strong>，相当于你的身份证。</li>
+<li><code>id_rsa.pub</code>：<strong>公钥</strong>（Public Key），需要上传到 Ubuntu 虚拟机。</li>
+<li>进入密钥所在的路径，使用notepad++或记事本打开并复制<code>id_rsa.pub</code>内容。</li>
+</ul>
+<h3 id="-后续操作指上传密钥到git服务器">🚀 后续操作指，上传密钥到Git服务器</h3>
+<p>复制好公钥后，回到 Ubuntu 虚拟机（Git服务器），执行以下命令完成配置：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-Bash" data-lang="Bash"><span style="display:flex;"><span><span style="color:#75715e"># 第一步：确保/home/git目录的所有者是git用户（否则后续操作会有权限问题） ---豆包</span>
+</span></span><span style="display:flex;"><span>sudo chown -R git:git /home/git/
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 切换到 git 用户的家目录并创建 .ssh 文件夹</span>
+</span></span><span style="display:flex;"><span>sudo -u git mkdir -p /home/git/.ssh
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 将公钥写入授权文件（请将 PASTE_YOUR_PUBLIC_KEY_HERE 替换为你实际复制的公钥内容）</span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;PASTE_YOUR_PUBLIC_KEY_HERE&#34;</span> | sudo -u git tee -a /home/git/.ssh/authorized_keys
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 设置严格权限（SSH 强制要求）</span>
+</span></span><span style="display:flex;"><span>sudo -u git chmod <span style="color:#ae81ff">700</span> /home/git/.ssh
+</span></span><span style="display:flex;"><span>sudo -u git chmod <span style="color:#ae81ff">600</span> /home/git/.ssh/authorized_keys
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 验证权限（可选）---豆包 </span>
+</span></span><span style="display:flex;"><span>ls -la /home/git/.ssh/ 
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 正确输出： </span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># drwx------ git git .ssh/ </span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># -rw------- git git authorized_keys</span>
+</span></span></code></pre></div><p>完成后，在 Windows 宿主机通过 <code>ssh git@&lt;虚拟机IP&gt;</code>实现免密登录。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-Bash" data-lang="Bash"><span style="display:flex;"><span><span style="color:#75715e"># 测试免密登录（宿主机执行） </span>
+</span></span><span style="display:flex;"><span>ssh git@&lt;虚拟机IP&gt;
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ✅ 登录成功提示（无密码输入直接进入）： </span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Welcome to Ubuntu 20.04 LTS (GNU/Linux 5.4.0-xx-generic x86_64)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ...（但会立即退出，因为git用户shell是nologin，仅允许git操作） </span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#❌ 登录失败排查： </span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 1. 检查虚拟机IP是否正确； </span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 2. 检查authorized_keys文件是否包含你的公钥； </span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 3. 检查权限：.ssh目录必须700，authorized_keys必须600； </span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 4. 重启SSH服务：sudo systemctl restart sshd</span>
+</span></span></code></pre></div>
+    </div>
+
+  </article>
+
+  
+  <div class="mt-20 pt-12 border-t border-gray-200 dark:border-gray-700 grid grid-cols-2 gap-8 text-sm">
+    <div>
+      
+        <a href="http://localhost:1313/SuperLE-Blog/posts/%E5%85%B3%E4%BA%8Egit%E5%BA%93%E7%9A%84%E5%88%9B%E5%BB%BA%E4%B8%8A%E4%BC%A0%E6%8B%89%E5%8F%96%E6%96%87%E4%BB%B6/" class="group block">
+          <div class="text-gray-500 dark:text-gray-400 mb-1">上一篇</div>
+          <div class="font-medium text-black dark:text-white group-hover:text-[#ec4899] line-clamp-2">
+            📚关于Git库的创建&amp;上传、拉取文件
+          </div>
+        </a>
+      
+    </div>
+    <div class="text-right">
+      
+        <div class="text-gray-400 dark:text-gray-500">当前已经是最后一篇</div>
+      
+    </div>
+  </div>
+
+  
+  <div class="giscus-section mt-16">
+    
+<div class="mt-16 pt-12 border-t border-gray-200 dark:border-gray-700">
+  <h3 class="text-xl font-semibold mb-6 text-black dark:text-white">💬 评论</h3>
+  
+  <div class="giscus-container">
+    <script src="https://giscus.app/client.js"
+      data-repo="letinlok/SuperLE-Blog"
+      data-repo-id="R_kgDOR_CFjQ"
+      data-category="Announcements"
+      data-category-id="DIC_kwDOR_CFjc4C6h9r"
+      data-mapping="pathname"
+      data-reactions-enabled="1"
+      data-emit-metadata="0"
+      data-input-position="top"
+      data-theme="preferred_color_scheme"
+      data-lang="zh-CN"
+      crossorigin="anonymous"
+      async>
+    </script>
+  </div>
+</div>
+
+  </div>
+
+</div>
+
+        </main>
+        
+<footer class="mt-32 text-center">
+    <div class="max-w-3xl mx-auto">
+        <div class="border-t border-border-primary-light dark:border-border-primary-dark pt-5">
+            <div class="flex flex-col items-center justify-center gap-2">
+                                
+                
+                
+                <p class="text-text-secondary-light dark:text-text-secondary-dark text-xm ">© 2026 </p>
+                <p class="text-text-secondary-light dark:text-text-secondary-dark text-xm pb-12">Built using <a href="https://gohugo.io/" target="_blank" class="animated-link text-accent-light dark:text-accent-dark hover:text-text-primary-light dark:hover:text-text-primary-dark">Hugo</a>. Take a look at my <a href="" target="_blank" class="animated-link text-accent-light dark:text-accent-dark hover:text-text-primary-light dark:hover:text-text-primary-dark">GitHub</a></p>
+                
+            </div>
+        </div>
+    </div>
+</footer>
+
+<style>
+    .animated-link {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+    }
+    
+    .animated-link::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 1px;
+        bottom: -1px;
+        left: 0;
+        background-color: #0284c7;  
+        transition: width 0.3s ease-in-out;
+    }
+    
+    .animated-link:hover::after {
+        width: 100%;
+    }
+    html.dark .animated-link::after {
+        background-color: #0ea5e9;  
+    }
+</style> 
+    </body>
+</html> 

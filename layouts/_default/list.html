@@ -32,11 +32,20 @@
           {{ .Title }}
         </h2>
 
-        <p class="text-gray-700 dark:text-[#cccccc] line-clamp-4 leading-relaxed flex-grow mb-8">
+        <!-- <p class="text-gray-700 dark:text-[#cccccc] line-clamp-4 leading-relaxed flex-grow mb-8">
           {{ if .Params.summary }}
             {{ .Params.summary }}
           {{ else }}
             {{ .Summary }}
+          {{ end }}
+        </p> -->
+
+        <p
+          class="text-gray-700 dark:text-[#cccccc] line-clamp-3 leading-relaxed flex-grow mb-8 h-[4.5rem] overflow-hidden text-ellipsis">
+          {{ if .Params.summary }}
+          {{ .Params.summary | truncate 65 }}
+          {{ else }}
+          {{ .Summary | truncate 65 }}
           {{ end }}
         </p>
 

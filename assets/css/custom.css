@@ -135,3 +135,37 @@ article p {
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1) !important;
 }
 
+/* 专门针对 type="about" 的页面进行强制居中 */
+/* 我们利用 body 上的类名或者直接针对 main 标签 */
+
+body:has(article) main, 
+main:has(.about-page-wrapper) {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: flex-start !important;
+    width: 100% !important;
+    min-height: 80vh !important;
+}
+
+/* 强制让关于页面的 article 容器居中且限制宽度 */
+.about-page-wrapper article {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    text-align: center !important;
+    display: block !important;
+}
+
+/* 针对你 Markdown 里的哈士奇图片进行强制居中 */
+.about-page-wrapper img, 
+.post-content img {
+    display: block !important;
+    margin: 2rem auto !important; /* 核心：左右 auto 实现居中 */
+    max-width: 200px !important;
+    height: auto !important;
+}
+
+/* 确保列表在居中对齐的容器里也能好看 */
+.about-page-wrapper ul {
+    display: inline-block !important;
+    text-align: left !important;
+}

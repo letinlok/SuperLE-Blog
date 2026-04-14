@@ -1,3 +1,11 @@
+---
+title: "📚关于Git库的创建&上传、拉取文件"
+date: 2026-04-13
+draft: false
+summary: "初始化、创建、命令..."
+tags: ["Git", "Ubuntu"]
+---
+
 ## 1. 创建裸仓库（Bare Repository）在Ubuntu中
 
 ```Bash

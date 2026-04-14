@@ -1,3 +1,11 @@
+---
+title: "✍关于Git服务器的搭建"
+date: 2026-04-13
+draft: false
+summary: "轻量级 SSH Git 服务器（VMware虚拟机+Ubuntu20.04）部署"
+tags: ["Git", "Ubuntu"]
+---
+
 ### 🚀轻量级 SSH Git 服务器（VMware虚拟机+Ubuntu20.04）
 
 #### 1. 虚拟机环境准备

@@ -3,7 +3,7 @@
     <head><script src="/SuperLE-Blog/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=SuperLE-Blog/livereload" data-no-instant defer></script>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>关于SQL - SuperLE Blog</title>
+        <title>🖊关于Git的一些话题 - SuperLE Blog</title>
         
         
         
@@ -218,6 +218,7 @@
 
   window.addEventListener('load', createBackToTop);
 </script>
+
         <main>
             
 <div class="max-w-3xl mx-auto px-6 py-16 bg-white dark:bg-[#0a0a0a]">
@@ -232,60 +233,169 @@
 
   <article>
 
+    
     <h1 class="text-5xl font-bold mb-10 text-black dark:text-white leading-tight">
-      关于SQL
+      🖊关于Git的一些话题
     </h1>
 
+    
     <div class="text-sm text-gray-500 dark:text-gray-400 mb-12">
-      2026年04月11日
+      2026年04月13日
     </div>
 
     
-    <div class="markdown-content">
+    <div class="prose prose-lg dark:prose-invert max-w-none markdown-content">
       <style>
+         
         .markdown-content h1 {
           font-size: 2.5rem !important;
-          font-weight: 700 !important;
           margin: 2.5rem 0 1.5rem 0 !important;
-          line-height: 1.2 !important;
-          color: #111827 !important;
         }
-        .dark .markdown-content h1 {
-          color: #ffffff !important;
-        }
+        .dark .markdown-content h1 { color: #ffffff !important; }
+
         .markdown-content h2 {
-          font-size: 1.8rem !important;
-          font-weight: 600 !important;
-          margin: 2rem 0 1rem 0 !important;
-          line-height: 1.3 !important;
-          color: #1f2937 !important;
+          font-size: 1.85rem !important;
+          margin: 2.2rem 0 1.2rem 0 !important;
+          border-bottom: 2px solid #e5e7eb !important;
+          padding-bottom: 0.5rem !important;
         }
-        .dark .markdown-content h2 {
-          color: #f3f4f6 !important;
+        .dark .markdown-content h2 { 
+          color: #f3f4f6 !important; 
+          border-bottom-color: #4b5563 !important;
         }
+
         .markdown-content h3 {
-          font-size: 1.4rem !important;
+          font-size: 1.5rem !important;
+          margin: 1.8rem 0 1rem 0 !important;
+        }
+        .dark .markdown-content h3 { color: #e5e7eb !important; }
+
+        .markdown-content h4 {
+          font-size: 1.25rem !important;
           font-weight: 600 !important;
-          margin: 1.8rem 0 0.8rem 0 !important;
-          color: #374151 !important;
+          margin: 1.6rem 0 0.8rem 0 !important;
         }
-        .dark .markdown-content h3 {
+        .dark .markdown-content h4 { color: #d1d5db !important; }
+
+         
+        .markdown-content pre {
+          background-color: #1f2937 !important;
           color: #e5e7eb !important;
+          padding: 1.25rem !important;
+          border-radius: 12px !important;
+          overflow-x: auto !important;
+          margin: 1.5rem 0 !important;
         }
-        .markdown-content p {
-          font-size: 1.1rem !important;
-          line-height: 1.75 !important;
-          margin-bottom: 1.4rem !important;
+
+         
+        .markdown-content table {
+          width: 100% !important;
+          border-collapse: collapse !important;
+          margin: 2rem 0 !important;
         }
+        .markdown-content th, 
+        .markdown-content td {
+          border: 1px solid #d1d5db !important;
+          padding: 12px 16px !important;
+          text-align: left !important;
+        }
+        .dark .markdown-content th, 
+        .dark .markdown-content td {
+          border-color: #4b5563 !important;
+        }
+        .markdown-content th {
+          background-color: #f3f4f6 !important;
+        }
+        .dark .markdown-content th {
+          background-color: #374151 !important;
+        }
+
+         
         .markdown-content img {
           max-width: 100% !important;
-          height: auto !important;
           border-radius: 12px !important;
           margin: 2rem 0 !important;
-          box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1) !important;
         }
       </style>
-      <h1 id="hello-sql">Hello SQL！</h1>
+
+      <h1 id="-无法上传下载clone">❓ 无法上传、下载、Clone</h1>
+<h4 id="1确认仓库状态">1.<strong>确认仓库状态</strong></h4>
+<p>在宿主机克隆的仓库目录中，打开终端执行：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-Bash" data-lang="Bash"><span style="display:flex;"><span>git status
+</span></span></code></pre></div><p><img src="https://secure2.wostatic.cn/static/9tArSTfTxD8akLLtf91hho/1.png?auth_key=1776080471-xy2eRAGqEy2wFjgN7kzDFU-0-4a2468ec90941f00b209228852c6b66b" alt=""></p>
+<h4 id="2配置git的用户信息">2.配置Git的用户信息</h4>
+<p>在宿主机上运行以下命令，替换为你自己的信息：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-Bash" data-lang="Bash"><span style="display:flex;"><span><span style="color:#75715e"># 设置用户名</span>
+</span></span><span style="display:flex;"><span>git config --global user.name <span style="color:#e6db74">&#34;你的名字&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 设置邮箱</span>
+</span></span><span style="display:flex;"><span>git config --global user.email <span style="color:#e6db74">&#34;你的邮箱@example.com&#34;</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-Bash" data-lang="Bash"><span style="display:flex;"><span><span style="color:#75715e"># 去掉 --global 参数，只对当前仓库生效</span>
+</span></span><span style="display:flex;"><span>git config user.name <span style="color:#e6db74">&#34;你的名字&#34;</span>
+</span></span><span style="display:flex;"><span>git config user.email <span style="color:#e6db74">&#34;你的邮箱@example.com&#34;</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-Bash" data-lang="Bash"><span style="display:flex;"><span><span style="color:#75715e"># 查看所有配置</span>
+</span></span><span style="display:flex;"><span>git config --list
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 或查看特定配置</span>
+</span></span><span style="display:flex;"><span>git config user.name
+</span></span><span style="display:flex;"><span>git config user.email
+</span></span></code></pre></div><h4 id="为什么需要这个配置">为什么需要这个配置？</h4>
+<ul>
+<li>
+<p>Git需要记录每次提交的作者信息</p>
+</li>
+<li>
+<p>这些信息会永久保存在提交历史中</p>
+</li>
+<li>
+<p>多人协作时方便知道谁修改了代码</p>
+</li>
+<li>
+<p>如果使用GitHub/GitLab等服务，邮箱会与账号关联</p>
+</li>
+<li>
+<p>检查远程仓库地址命令：</p>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git remote -v
+</span></span></code></pre></div><h1 id="-other">🖊 Other</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-Bash" data-lang="Bash"><span style="display:flex;"><span>1. 提交修改到本地仓库
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 添加所有修改</span>
+</span></span><span style="display:flex;"><span>git add .
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 或添加指定文件</span>
+</span></span><span style="display:flex;"><span>git add 文件名
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 提交到本地仓库</span>
+</span></span><span style="display:flex;"><span>git commit -m <span style="color:#e6db74">&#34;描述修改内容&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>2. 推送到远程仓库（Ubuntu中的仓库）
+</span></span><span style="display:flex;"><span>git push origin 分支名
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 通常首次推送到主分支</span>
+</span></span><span style="display:flex;"><span>git push origin main
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 或</span>
+</span></span><span style="display:flex;"><span>git push origin master
+</span></span></code></pre></div><h1 id="ubuntu中clone代码权限问题">📕Ubuntu中Clone代码权限问题</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-Bash" data-lang="Bash"><span style="display:flex;"><span><span style="color:#75715e"># 1. 解除 Git 安全权限限制（解决 dubious ownership 报错）</span>
+</span></span><span style="display:flex;"><span>git config --global --add safe.directory /home/git/repositories/lecode.git 
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 2. 重新克隆 gitcode 分支，查看你的代码 </span>
+</span></span><span style="display:flex;"><span>git clone -b gitcode /home/git/repositories/lecode.git my-lecode
+</span></span></code></pre></div><h1 id="查看git分支">👀查看Git分支</h1>
+<h2 id="一本地电脑windows--你的开发机">一、本地电脑（Windows / 你的开发机）</h2>
+<h3 id="1-查看本地所有分支">1. 查看<strong>本地所有分支</strong></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-Bash" data-lang="Bash"><span style="display:flex;"><span>git branch
+</span></span></code></pre></div><p>例：</p>
+<ul>
+<li>带 <code>*</code> 的是<strong>当前所在分支</strong></li>
+<li>你会看到 <code>* gitcode</code>，证明你在这个分支</li>
+</ul>
+<h3 id="2-查看远程服务器上的所有分支">2. 查看<strong>远程服务器上的所有分支</strong></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-Bash" data-lang="Bash"><span style="display:flex;"><span>git branch -r
+</span></span></code></pre></div><p>会显示：<code>origin/gitcode</code></p>
+<h3 id="3-查看全部分支本地--远程">3. 查看<strong>全部分支（本地 + 远程）</strong></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-Bash" data-lang="Bash"><span style="display:flex;"><span>git branch -a
+</span></span></code></pre></div><h2 id="二ubuntu-服务器裸仓库专用命令">二、Ubuntu 服务器（裸仓库，专用命令）</h2>
+<h4 id="因为服务器仓库属于-git-用户必须加权限前缀直接执行">因为服务器仓库属于 <code>git</code> 用户，<strong>必须加权限前缀</strong>，直接执行：</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo -u git git branch -a
+</span></span></code></pre></div><p>✅ 运行后就能看到服务器上的所有分支（你会看到 <code>gitcode</code> 分支）</p>
 
     </div>
 
@@ -293,34 +403,30 @@
 
   
   <div class="mt-20 pt-12 border-t border-gray-200 dark:border-gray-700 grid grid-cols-2 gap-8 text-sm">
-
-    
     <div>
       
-        <a href="http://localhost:1313/SuperLE-Blog/posts/%E6%88%91/" class="group block">
+        <a href="http://localhost:1313/SuperLE-Blog/posts/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E7%A7%91%E6%8A%80%E6%97%A5%E5%BF%97/" class="group block">
           <div class="text-gray-500 dark:text-gray-400 mb-1">上一篇</div>
-          <div class="font-medium text-black dark:text-white group-hover:text-[#ec4899] transition-colors line-clamp-2">
-            关于SQL
+          <div class="font-medium text-black dark:text-white group-hover:text-[#ec4899] line-clamp-2">
+            我的第一篇科技日志
           </div>
         </a>
       
     </div>
-
-    
     <div class="text-right">
       
-        <a href="http://localhost:1313/SuperLE-Blog/posts/test/" class="group block">
+        <a href="http://localhost:1313/SuperLE-Blog/posts/%E4%B8%80%E4%BA%9B%E9%A2%9D%E5%A4%96%E8%AF%B4%E6%98%8E/" class="group block">
           <div class="text-gray-500 dark:text-gray-400 mb-1">下一篇</div>
-          <div class="font-medium text-black dark:text-white group-hover:text-[#ec4899] transition-colors line-clamp-2">
-            关于SQL
+          <div class="font-medium text-black dark:text-white group-hover:text-[#ec4899] line-clamp-2">
+            🚩一些额外说明
           </div>
         </a>
       
     </div>
-
   </div>
 
-  <div class="giscus-section">
+  
+  <div class="giscus-section mt-16">
     
 <div class="mt-16 pt-12 border-t border-gray-200 dark:border-gray-700">
   <h3 class="text-xl font-semibold mb-6 text-black dark:text-white">💬 评论</h3>
@@ -344,6 +450,7 @@
 </div>
 
   </div>
+
 </div>
 
         </main>

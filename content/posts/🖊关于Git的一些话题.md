@@ -1,3 +1,12 @@
+---
+title: "🖊关于Git的一些话题"
+date: 2026-04-13
+draft: false
+summary: "问题解决"
+tags: ["Git", "Ubuntu"]
+---
+
+
 # ❓ 无法上传、下载、Clone
 
 #### 1.**确认仓库状态**

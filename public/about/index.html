@@ -218,139 +218,71 @@
 
   window.addEventListener('load', createBackToTop);
 </script>
+
         <main>
             
 <div class="max-w-3xl mx-auto px-6 py-16 bg-white dark:bg-[#0a0a0a]">
 
-  
-  <div class="mb-8">
-    <a href="http://localhost:1313/SuperLE-Blog/posts/" 
-       class="inline-flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-[#ec4899] transition-colors">
-      ← 返回文章列表
-    </a>
-  </div>
+  <article class="prose prose-lg dark:prose-invert max-w-none">
 
-  <article>
-
+    
     <h1 class="text-5xl font-bold mb-10 text-black dark:text-white leading-tight">
       关于我
     </h1>
-
-    <div class="text-sm text-gray-500 dark:text-gray-400 mb-12">
-      2026年04月01日
-    </div>
 
     
     <div class="markdown-content">
       <style>
         .markdown-content h1 {
           font-size: 2.5rem !important;
-          font-weight: 700 !important;
           margin: 2.5rem 0 1.5rem 0 !important;
-          line-height: 1.2 !important;
-          color: #111827 !important;
         }
-        .dark .markdown-content h1 {
-          color: #ffffff !important;
-        }
+        .dark .markdown-content h1 { color: #ffffff !important; }
+
         .markdown-content h2 {
-          font-size: 1.8rem !important;
-          font-weight: 600 !important;
-          margin: 2rem 0 1rem 0 !important;
-          line-height: 1.3 !important;
-          color: #1f2937 !important;
+          font-size: 1.85rem !important;
+          margin: 2.2rem 0 1.2rem 0 !important;
+          border-bottom: 2px solid #e5e7eb !important;
+          padding-bottom: 0.5rem !important;
         }
-        .dark .markdown-content h2 {
-          color: #f3f4f6 !important;
+        .dark .markdown-content h2 { 
+          color: #f3f4f6 !important; 
+          border-bottom-color: #4b5563 !important;
         }
-        .markdown-content h3 {
+
+        .markdown-content h3, .markdown-content h4 {
           font-size: 1.4rem !important;
-          font-weight: 600 !important;
-          margin: 1.8rem 0 0.8rem 0 !important;
-          color: #374151 !important;
+          margin: 1.8rem 0 1rem 0 !important;
         }
-        .dark .markdown-content h3 {
-          color: #e5e7eb !important;
+        .dark .markdown-content h3, .markdown-content h4 { color: #e5e7eb !important; }
+
+        .markdown-content ul {
+          list-style-type: disc !important;
+          padding-left: 1.5rem !important;
         }
-        .markdown-content p {
-          font-size: 1.1rem !important;
-          line-height: 1.75 !important;
-          margin-bottom: 1.4rem !important;
+        .markdown-content li {
+          margin-bottom: 0.5rem !important;
         }
+
         .markdown-content img {
           max-width: 100% !important;
-          height: auto !important;
           border-radius: 12px !important;
           margin: 2rem 0 !important;
-          box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1) !important;
+          display: block !important;
         }
       </style>
+
       <h1 id="tinlok">TinLok</h1>
-<ul>
-<li>正在学习 Hugo 搭建自己的博客</li>
-<li>喜欢科技、阅读和记录思考</li>
-<li>这个网站完全用静态方式搭建，简洁、有科技感</li>
-</ul>
-<p><img src="http://localhost:1313/SuperLE-Blog/images/about/%E4%BA%8C%E5%93%88-%E7%9B%AF.svg" alt="图片描述"></p>
-<h2 id="欢迎来到我的数字空间">🍻欢迎来到我的数字空间！</h2>
+<h3 id="正在学习-hugo-搭建自己的博客">正在学习 Hugo 搭建自己的博客 <br></h3>
+<h3 id="喜欢科技阅读和记录思考">喜欢科技、阅读和记录思考</h3>
+<h3 id="这个网站完全用静态方式搭建简洁有科技感">这个网站完全用静态方式搭建，简洁、有科技感</h3>
+<p><img src="http://localhost:1313/SuperLE-Blog/logo.svg" alt="TinLok logo"></p>
+<h2 id="-欢迎来到我的数字空间">🍻 欢迎来到我的数字空间！</h2>
 
     </div>
 
   </article>
 
-  
-  <div class="mt-20 pt-12 border-t border-gray-200 dark:border-gray-700 grid grid-cols-2 gap-8 text-sm">
-
-    
-    <div>
-      
-        <div class="block">
-          <div class="text-gray-500 dark:text-gray-400 mb-1">上一篇</div>
-          <div class="font-medium text-gray-400 dark:text-gray-500">
-            当前已经是第一篇
-          </div>
-        </div>
-      
-    </div>
-
-    
-    <div class="text-right">
-      
-        <div class="block">
-          <div class="text-gray-500 dark:text-gray-400 mb-1">下一篇</div>
-          <div class="font-medium text-gray-400 dark:text-gray-500">
-            当前已经是最后一篇
-          </div>
-        </div>
-      
-    </div>
-
-  </div>
-
-  <div class="giscus-section">
-    
-<div class="mt-16 pt-12 border-t border-gray-200 dark:border-gray-700">
-  <h3 class="text-xl font-semibold mb-6 text-black dark:text-white">💬 评论</h3>
-  
-  <div class="giscus-container">
-    <script src="https://giscus.app/client.js"
-      data-repo="letinlok/SuperLE-Blog"
-      data-repo-id="R_kgDOR_CFjQ"
-      data-category="Announcements"
-      data-category-id="DIC_kwDOR_CFjc4C6h9r"
-      data-mapping="pathname"
-      data-reactions-enabled="1"
-      data-emit-metadata="0"
-      data-input-position="top"
-      data-theme="preferred_color_scheme"
-      data-lang="zh-CN"
-      crossorigin="anonymous"
-      async>
-    </script>
-  </div>
-</div>
-
-  </div>
 </div>
 
         </main>

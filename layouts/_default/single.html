@@ -1,27 +1,54 @@
 {{ define "main" }}
 <div class="max-w-3xl mx-auto px-6 py-16 bg-white dark:bg-[#0a0a0a]">
 
-  <!-- 返回文章列表按钮 -->
   <div class="mb-8">
-    <a href="/posts/" 
+    <a href="{{ if eq .Type "books" }}/books/{{ else }}/posts/{{ end }}" 
        class="inline-flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-[#ec4899] transition-colors">
-      ← 返回文章列表
+      ← 返回{{ if eq .Type "books" }}书架{{ else }}文章列表{{ end }}
     </a>
   </div>
 
   <article>
 
-    <!-- 文章标题 -->
-    <h1 class="text-5xl font-bold mb-10 text-black dark:text-white leading-tight">
+    <h1 class="text-5xl font-bold mb-8 text-black dark:text-white leading-tight">
       {{ .Title }}
     </h1>
 
-    <!-- 发布日期 -->
-    <div class="text-sm text-gray-500 dark:text-gray-400 mb-12">
-      {{ .Date.Format "2006年01月02日" }}
+    <div class="flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-gray-500 dark:text-gray-400 mb-12 border-b border-gray-100 dark:border-gray-800 pb-6">
+      
+      <div class="flex items-center gap-1">
+        <span></span>
+        <span class="text-black dark:text-white font-medium">
+          {{ if .Params.authors }}
+            {{ delimit .Params.authors ", " }}
+          {{ else if .Params.author }}
+            {{ .Params.author }}
+          {{ else }}
+            TinLok
+          {{ end }}
+        </span>
+      </div>
+
+      <div class="flex items-center gap-1">
+        <span>发表日期：</span>
+        <span class="font-mono">{{ .Date.Format "2006年01月02日" }}</span>
+      </div>
+
+      {{ if .Params.tags }}
+      <div class="flex items-center gap-2">
+        <span>标签：</span>
+        <div class="flex flex-wrap gap-2">
+          {{ range .Params.tags }}
+          <a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}/" 
+             class="px-2 py-0.5 bg-gray-100 dark:bg-gray-800 text-[#ec4899] rounded hover:bg-[#ec4899] hover:text-white transition-all">
+            #{{ . }}
+          </a>
+          {{ end }}
+        </div>
+      </div>
+      {{ end }}
     </div>
 
-    <!-- Markdown 正文内容（核心部分） -->
     <div class="prose prose-lg dark:prose-invert max-w-none markdown-content">
       <style>
         /* 标题强化 */
@@ -101,7 +128,6 @@
 
   </article>
 
-  <!-- 上一篇 / 下一篇 -->
   <div class="mt-20 pt-12 border-t border-gray-200 dark:border-gray-700 grid grid-cols-2 gap-8 text-sm">
     <div>
       {{ if .PrevInSection }}
@@ -129,7 +155,6 @@
     </div>
   </div>
 
-  <!-- 评论区 -->
   <div class="giscus-section mt-16">
     {{ partial "giscus.html" . }}
   </div>
